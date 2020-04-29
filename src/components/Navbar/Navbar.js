@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/icons/KanapkaIcon.svg';
+import Bag from '../../assets/icons/navbar_icons/shopping-bag.svg';
 import Hamburger from 'hamburger-react';
 
 export const Navbar = (props) => {
@@ -20,11 +21,14 @@ export const Navbar = (props) => {
                <li>Testimonials</li>
                <li>Contact Us</li>
             </ul>
-            <span>
-               <span className='button-link'>
-                  <Link to='create-an-order'>
-                     <button>Create an Order</button>
-                  </Link>
+            <span className='links'>
+               <Link to='/sign-up'>Sign Up</Link>
+               <Link to='/menu' className='create-an-order-link'>
+                  Create an Order
+               </Link>
+               <span to='cart' className='shopping-bag-span'>
+                  <span>$13.00</span>
+                  <img src={Bag} alt='cart' />
                </span>
             </span>
          </span>
