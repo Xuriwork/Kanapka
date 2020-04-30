@@ -10,7 +10,7 @@
 
 :root {
    --theme-color: #ffaa00;
-   --red-theme-color: #F81A1A;
+   --red-theme-color: #f81a1a;
    --header-font: Lilita One, sans-serif;
 }
 
@@ -33,6 +33,7 @@ a {
 
 button {
    border: none;
+   background: none;
 }
 
 .app {
@@ -96,7 +97,7 @@ button {
          }
       }
    }
-   
+
    .create-an-order-link {
       background-color: var(--theme-color);
       color: #fff;
@@ -107,7 +108,7 @@ button {
       font-size: 0.9em;
       margin: 0 10px;
    }
-   
+
    .shopping-bag-span {
       width: 110px;
       height: 35px;
@@ -131,6 +132,104 @@ button {
    }
 }
 
+.quantity-buttons {
+   button {
+      fill: #df9500;
+
+      &:disabled {
+         fill: #aaaaaa !important;
+      }
+   }
+
+   span {
+      margin: 0 10px;
+   }
+
+   svg {
+      width: 14px;
+   }
+}
+
+.container {
+   width: 100%;
+   position: absolute;
+
+   .shopping-bag {
+      width: 380px;
+      background-color: #f2f2f2;
+      margin: 10px 20px;
+      z-index: 2;
+      float: right;
+      border-radius: 5px;
+      top: 60px;
+      right: 0;
+      position: fixed;
+      animation: fadeIn ease 0.4s;
+
+      @keyframes fadeIn {
+         0% {
+           opacity: 0;
+           top: 50px;
+         }
+         100% {
+           opacity: 1;
+           top: 60px;
+         }
+       }
+
+      .shopping-bag-items {
+         padding: 15px;
+
+         li {
+            margin-bottom: 18px;
+            padding: 20px;
+            background-color: #fff;
+
+            div {
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               width: 100%;
+            }
+
+            .item-info {
+               margin-bottom: 4px;
+               padding-bottom: 30px;
+               border-bottom: 1px solid rgb(220, 220, 220);
+               font-weight: bold;
+               color: #382e36;
+            }
+
+            .quantity-section {
+               margin-top: 10px;
+            }
+         }
+      }
+
+      .checkout-button {
+         width: 100%;
+         background-color: var(--theme-color);
+         color: #fff;
+         padding: 15px;
+         border-radius: 0 0 5px 5px;
+         font-size: 1.1em;
+         font-family: var(--header-font);
+         text-transform: uppercase;
+
+         &:disabled {
+            background-color: rgb(118, 118, 118);
+            cursor: not-allowed;
+         }
+      }
+
+      .remove-item {
+         color: #c78b13;
+         font-size: 0.9em;
+         font-weight: 400;
+      }
+   }
+}
+
 .modal {
    position: fixed;
    z-index: 2;
@@ -144,10 +243,9 @@ button {
    justify-content: center;
    align-items: center;
    transform: translateY(0);
-   transition: transform 800ms ease;
 
    .modal-content-container {
-      background-color: #F2F2F2;
+      background-color: #f2f2f2;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -157,21 +255,21 @@ button {
       box-sizing: border-box;
       border-radius: 5px;
       animation: show 0.2s;
-  
+
       @keyframes show {
-        from {
-          transform: scale(0);
-          opacity: 0;
-          z-index: -1;
-        }
-        to {
-          transform: scale(1);
-          opacity: 1;
-          z-index: 2;
-        }
+         from {
+            transform: scale(0);
+            opacity: 0;
+            z-index: -1;
+         }
+         to {
+            transform: scale(1);
+            opacity: 1;
+            z-index: 2;
+         }
       }
 
-      @keyframes unshow {
+      @keyframes hide {
          from {
             transform: scale(1);
             opacity: 1;
@@ -182,9 +280,9 @@ button {
             opacity: 0;
             z-index: -1;
          }
-       }
+      }
 
-       .modal-header {
+      .modal-header {
          display: flex;
          align-items: center;
          justify-content: space-between;
@@ -214,14 +312,12 @@ button {
             color: #fff;
             padding: 10px 20px;
             border-radius: 5px;
-
          }
-         
       }
 
       .modal-content {
          padding: 10px 20px;
-         
+
          img {
             width: 13px;
          }
@@ -232,7 +328,6 @@ button {
             font-size: 1.2em;
             margin: 5px 0;
          }
-
 
          .increment-item {
             width: 15px;
@@ -251,11 +346,6 @@ button {
 
                button {
                   background-color: transparent;
-               }
-
-               span {
-                  margin-left: 6px;
-                  margin-right: 8px;
                }
             }
          }
@@ -629,9 +719,6 @@ button {
    }
 }
 
-
-
-
 .yellow-divs {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -981,8 +1068,8 @@ th {
       overflow: hidden;
       box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
-      border: 2px #F4F1EF solid;
-      
+      border: 2px #f4f1ef solid;
+
       &:hover {
          border: 2px var(--theme-color) solid;
          cursor: pointer;
@@ -1023,7 +1110,8 @@ th {
 
 @media (min-width: 900px) {
    .paint {
-      background: url('./assets/images/HomeAssets/yellow-paint-mobile.svg') no-repeat 0 0;
+      background: url('./assets/images/HomeAssets/yellow-paint-mobile.svg')
+         no-repeat 0 0;
       background-size: 60%;
       width: 400px;
       height: 180px;

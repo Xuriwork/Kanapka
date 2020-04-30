@@ -1,14 +1,21 @@
 import React from 'react';
-import Decrement from '../../assets/decrement.svg';
-import Increment from '../../assets/increment.svg';
+import { ReactComponent as Decrement } from '../assets/decrement.svg';
+import { ReactComponent as Increment } from '../assets/increment.svg';
 
 export const Modal = React.memo((props) => {
-   const { isVisible } = props;
+   const { isVisible, updateField, orders, setOrders } = props;
    const body = document.body;
+   console.log(orders)
 
    const closeModalHandler = () => {
       body.style.overflow = 'auto';
-      props.setFoodModal(null);
+      const modalContainer = document.querySelector('.modal-content-container');
+      if (modalContainer) {
+         modalContainer.style.animation = 'hide 0.2s';
+      }
+      setTimeout(() => {
+         props.setFoodModal(null);
+      }, 100);
    };
 
    window.onclick = (event) => {
@@ -18,12 +25,22 @@ export const Modal = React.memo((props) => {
       }
    };
 
+   const order = {
+      name: isVisible.name,
+      price: `${isVisible.price}`
+   };
+
+   const handleAddToOrder = () => {
+      setOrders([...orders, order]);
+      closeModalHandler();
+   };
+
    return (
       <span>
          <>
-            {props.isVisible ? (
+            {isVisible ? (
                <div
-                  style={{ display: props.isVisible ? 'flex' : 'none' }}
+                  style={{ display: isVisible ? 'flex' : 'none' }}
                   id='modal'
                   className='modal'>
                   <div className='modal-content-container'>
@@ -33,26 +50,24 @@ export const Modal = React.memo((props) => {
                            <h3>{isVisible.name}</h3>
                         </span>
                         <span>
-                           <span>$1.00</span>
-                           <button className='add-button'>Add to Bag</button>
+                           <span>${isVisible.price.toFixed(2)}</span>
+                           <button className='add-button' onClick={handleAddToOrder}>Add to Bag</button>
                         </span>
                      </div>
                      <div className='modal-content'>
                         <hr />
                         <h2>Quantity</h2>
                         <div className='quantity-section'>
-                           <div>$1.00</div>
+                           <div>${isVisible.price.toFixed(2)}</div>
                            <div className='quantity-buttons'>
-                              <button>
-                                 <img src={Decrement} alt='decrement item' />
+                              <button disabled name={isVisible.name}>
+                                 <Decrement />
                               </button>
                               <span>1</span>
-                              <button>
-                                 <img
-                                    src={Increment}
-                                    alt='increment item'
-                                    className='increment-item'
-                                 />
+                              <button name={isVisible.name} onClick={() => {
+                                 updateField(isVisible.name, 1);
+                              }}>
+                                 <Increment />
                               </button>
                            </div>
                         </div>

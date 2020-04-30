@@ -1,24 +1,22 @@
-import React, { useReducer } from 'react';
-import foods from './../utils/FoodData';
+import React, { useState } from 'react';
+import foods from './../../utils/FoodData';
 import { ReactComponent as StreakUnderline } from '../../assets/styled-underline.svg';
-import Modal from './../utils/Modal';
+import Modal from './../../utils/Modal';
 
-const reducer = (state, action) => {
-   switch (action.type) {
-      case 'open-modal':
-         return { item: [...state.item, action.item] }
-      default: 
-         return state;
-   }
-};
-
-const CreateOrder = () => {
+const CreateOrder = ({ orders, setOrders }) => {
    const [openFoodModal, setFoodModal] = React.useState();
-   const [state, dispatch] = useReducer(reducer, { item: [] });
+   const [quantities, setQuantities] = useState({ });
 
    const handleFoodModal = (food) => {
       setFoodModal(food);
-      dispatch({ type: 'open-modal', item: food });
+   };
+
+   const updateField = (name, quantity) => {
+      console.log(name, quantity)
+      setQuantities({
+         ...quantities,
+         [name]: quantity,
+      });
    };
 
    return (
@@ -30,7 +28,10 @@ const CreateOrder = () => {
          <div className='create-order-component'>
             <section className='cards'>
                {foods.map((food) => (
-                  <div key={food.name} className='card' onClick={() => handleFoodModal(food)}>
+                  <div
+                     key={food.name}
+                     className='card'
+                     onClick={() => handleFoodModal(food)}>
                      <div
                         className='card--img'
                         style={{ backgroundImage: `url(${food.img})` }}></div>
@@ -40,7 +41,15 @@ const CreateOrder = () => {
                      </div>
                   </div>
                ))}
-               <Modal isVisible={openFoodModal} setFoodModal={setFoodModal} />
+               {openFoodModal ? (
+                  <Modal 
+                     isVisible={openFoodModal} 
+                     setFoodModal={setFoodModal} 
+                     updateField={updateField} 
+                     orders={orders}
+                     setOrders={setOrders}
+                  />
+               ) : null}
             </section>
          </div>
       </>
