@@ -1,13 +1,20 @@
 /* eslint-disable no-useless-escape */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
+import { useSession } from '../../hooks/useSession';
+
 const SignUp = ({ handleSignUp, errors }) => {
+   const user = useSession();
    const { register, handleSubmit, errors: formErrors } = useForm();
 
    const signUp = (data) => {
       handleSignUp(data.email, data.password, data.name, data.phoneNumber);
+   };
+
+   if (user) {
+      return <Redirect to={{pathname:'/'}} />
    };
 
    return (
@@ -30,7 +37,7 @@ const SignUp = ({ handleSignUp, errors }) => {
                      },
                      pattern: {
                         value: /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
-                        message: 'This is not a valid name',
+                        message: 'That doesn\'t look like a valid name.',
                      }
                   })}
                />
@@ -44,7 +51,9 @@ const SignUp = ({ handleSignUp, errors }) => {
                         value: true,
                         message: 'This field is required',
                      },
-                     pattern: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/,
+                     pattern: {
+                        value: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/},
+                        message: 'That doesn\'t look like a valid email.'
                   })}
                />
                {formErrors.email && <span className='span-error-message'>{formErrors.email.message}</span>}
@@ -91,7 +100,7 @@ const SignUp = ({ handleSignUp, errors }) => {
                      },
                      pattern: {
                         value: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-                        message: 'This field is not valid'
+                        message: 'That doesn\'t look like a valid phone number.'
                      },
                   })}
                />

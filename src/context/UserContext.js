@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Redirect } from 'react-router';
 import firebase from '../utils/Firebase';
 
 const UserContext = React.createContext({
@@ -10,13 +11,13 @@ export const useAuth = () => {
         const user = firebase.auth().currentUser;
 
         return {
-            initializing: !user,
+            userIsLoading: !user,
             user,
         };
     });
 
     const onChange = (user) => {
-        setState({ initializing: false, user })
+        setState({ userIsLoading: false, user })
     };
 
     useEffect(() => {
@@ -26,6 +27,14 @@ export const useAuth = () => {
     }, [])
 
     return state;
-}
+};
+
+export const PrivateRoute = ({component: Component, auth }) => (
+  <Route render={props => auth === true
+    ? <Component auth={auth} {...props} />
+    : <Redirect to={{pathname:'/'}} />
+  }
+  />
+);
 
 export default UserContext;

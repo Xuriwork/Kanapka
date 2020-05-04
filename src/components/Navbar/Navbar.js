@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router";
 
 import Hamburger from 'hamburger-react';
 
@@ -10,14 +11,13 @@ import firebase from './../../utils/Firebase';
 import { useSession } from '../../hooks/useSession';
 import { formatPrice } from './../../utils/foodData';
 import QuantityButtons from './../../utils/QuantityButtons';
-import { FoodBagContext } from '../../state/BagState';
+import { FoodBagContext } from '../../context/BagContext';
 
-export const Navbar = ({ orders, setOrders, removeItem, subtotal, getOrderPrice }) => {
+export const Navbar = ({ orders, setOrders, removeItem, subtotal, getOrderPrice, history }) => {
+
+   const user = useSession();
    const [isOpen, setOpen] = useState(false);
    const { isBagOpen, toggleBag } = useContext(FoodBagContext);
-   const user = useSession();
-
-   console.log(user)
 
    const incrementOrderItem = (index) => {
       const newOrders = [...orders];
@@ -35,12 +35,8 @@ export const Navbar = ({ orders, setOrders, removeItem, subtotal, getOrderPrice 
 
    const signOut = () => {
       firebase.auth().signOut()
-      .then(() => {
-      
-      })
-      .catch((error) => {
-         console.log(error);
-      });
+      .then(() => history.push('/'))
+      .catch((error) => console.log(error));
    };
    
    return (
@@ -130,4 +126,4 @@ export const Navbar = ({ orders, setOrders, removeItem, subtotal, getOrderPrice 
    );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

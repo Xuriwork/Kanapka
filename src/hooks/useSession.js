@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import UserContext from '../state/UserContext';
+import UserContext from '../context/UserContext';
 
 export const useSession = () => {
     const { user } = useContext(UserContext);

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FoodBagContext } from '../../state/BagState';
+import { FoodBagContext } from '../../context/BagContext';
 import foods, { formatPrice } from './../../utils/foodData';
 import { ReactComponent as StreakUnderline } from '../../assets/styled-underline.svg';
 import Modal from './../../utils/Modal';

@@ -1,34 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Hamburger from '../../assets/images/HomeAssets/hamburger.svg';
-import Pizza from '../../assets/images/HomeAssets/pizza.svg';
-import Shakes from '../../assets/images/HomeAssets/food_delivery_10.png';
-import Fries from '../../assets/images/HomeAssets/fries.svg';
-import Spaghetti from '../../assets/images/HomeAssets/spaghetti.svg';
-import Taco from '../../assets/images/HomeAssets/taco.svg';
-
-import PizzaMan from '../../assets/images/HomeAssets/pizza-man.png';
-import WomanEatingBurger from '../../assets/images/HomeAssets/beautiful-young-healthy-woman-holds-tasty-big-burger.png';
-
-import Star from '../../assets/images/HomeAssets/star.png';
-import ShoppingBag from '../../assets/images/HomeAssets/shopping-bag.svg';
-import PaymentIcons from '../../assets/images/HomeAssets/payment-icons.svg';
-import SocialMediaIcons from '../../assets/images/HomeAssets/social-media-icons.svg';
-
-import LocationMarker from '../../assets/images/HomeAssets/location-marker.png';
-import ClockIcon from '../../assets/images/HomeAssets/clock.png';
-
-import PizzaDeliveryManIcon from '../../assets/images/HomeAssets/pizza-delivery-man-icon.svg';
-import TimerIcon from '../../assets/images/HomeAssets/timer.svg';
-import BurgerIcon from '../../assets/images/HomeAssets/burger.svg';
-import MealIcon from '../../assets/images/HomeAssets/meal.svg';
-
-import YellowPaint from '../../assets/images/HomeAssets/yellow-paint.svg';
-import RedComma from '../../assets/images/HomeAssets/red-commas.svg';
-
-import HomeBurger from '../../assets/images/HomeAssets/Burger-Transparent-Images.png';
-
 import Logo from '../../assets/icons/KanapkaIcon.svg';
+
+const IMG = (imgName) => require(`../../assets/images/HomeAssets/${imgName}`);
 
 const Home = () => {
    return (
@@ -47,7 +21,7 @@ const Home = () => {
                   </Link>
                </div>
                <div>
-                  <img src={HomeBurger} alt='Tasty burger' />
+                  <img src={IMG('Burger-Transparent-Images.png')} alt='Tasty burger' />
                </div>
             </div>
          </div>
@@ -56,7 +30,7 @@ const Home = () => {
             <h1>Want to eat?</h1>
             <img
                className='yellow-streak'
-               src={YellowPaint}
+               src={IMG('yellow-paint.svg')}
                alt='Yellow streak'
             />
             <p>
@@ -65,27 +39,27 @@ const Home = () => {
             </p>
             <div className='food-icons'>
                <div>
-                  <img src={Hamburger} alt='Hamburger' />
+                  <img src={IMG('hamburger.svg')} alt='Hamburger' />
                   Burger
                </div>
                <div>
-                  <img src={Pizza} alt='Pizza' />
+                  <img src={IMG('pizza.svg')} alt='Pizza' />
                   Pizza
                </div>
                <div>
-                  <img src={Fries} alt='Fries' />
+                  <img src={IMG('fries.svg')} alt='Fries' />
                   <p>Fast food</p>
                </div>
                <div>
-                  <img src={Shakes} alt='Shakes' />
+                  <img src={IMG('food_delivery_10.png')} alt='Shakes' />
                   Shakes
                </div>
                <div>
-                  <img src={Taco} alt='Taco' />
+                  <img src={IMG('taco.svg')} alt='Taco' />
                   Taco
                </div>
                <div>
-                  <img className='spaghetti' src={Spaghetti} alt='Spaghetti' />
+                  <img className='spaghetti' src={IMG('spaghetti.svg')} alt='Spaghetti' />
                   Spaghetti
                </div>
             </div>
@@ -93,7 +67,7 @@ const Home = () => {
 
          <section className='delivery-section'>
             <div>
-               <img className='pizza-man' src={PizzaMan} alt='Pizza man' />
+               <img className='pizza-man' src={IMG('pizza-man.png')} alt='Pizza man' />
                <div className='paint-red'>
                   <h1>
                      We Guarantee <br /> 30 Minutes Delivery
@@ -110,7 +84,7 @@ const Home = () => {
             <h1>Our Most Popular Recipes</h1>
             <img
                className='yellow-streak'
-               src={YellowPaint}
+               src={IMG('yellow-paint.svg')}
                alt='Yellow streak'
             />
             <p>
@@ -122,7 +96,7 @@ const Home = () => {
                   <div></div>
                   <div className='recipe-info-div'>
                      <p>
-                        <img src={Star} alt='Star rating' />
+                        <img src={IMG('star.png')} alt='Star rating' />
                         <span>7.5 Rating</span>
                      </p>
                      <p>Attribute Variation</p>
@@ -131,7 +105,7 @@ const Home = () => {
                         <button>
                            <img
                               className='shopbag'
-                              src={ShoppingBag}
+                              src={IMG('shopping-bag.svg')}
                               alt='Shopbag'
                            />
                            Add to Cart
@@ -144,7 +118,7 @@ const Home = () => {
                   <div></div>
                   <div className='recipe-info-div'>
                      <p>
-                        <img src={Star} alt='Star rating' />
+                        <img src={IMG('star.png')} alt='Star rating' />
                         <span>7.5 Rating</span>
                      </p>
                      <p>Attribute Variation</p>
@@ -153,7 +127,7 @@ const Home = () => {
                         <button>
                            <img
                               className='shopbag'
-                              src={ShoppingBag}
+                              src={IMG('shopping-bag.svg')}
                               alt='Shopbag'
                            />
                            Add to Cart
@@ -166,7 +140,7 @@ const Home = () => {
                   <div></div>
                   <div className='recipe-info-div'>
                      <p>
-                        <img src={Star} alt='Star rating' />
+                        <img src={IMG('star.png')} alt='Star rating' />
                         <span>7.5 Rating</span>
                      </p>
                      <p>Attribute Variation</p>
@@ -175,7 +149,7 @@ const Home = () => {
                         <button>
                            <img
                               className='shopbag'
-                              src={ShoppingBag}
+                              src={IMG('shopping-bag.svg')}
                               alt='Shopbag'
                            />
                            Add to Cart
@@ -188,7 +162,7 @@ const Home = () => {
                   <div></div>
                   <div className='recipe-info-div'>
                      <p>
-                        <img src={Star} alt='Star rating' />
+                        <img src={IMG('star.png')} alt='Star rating' />
                         <span>7.5 Rating</span>
                      </p>
                      <p>Attribute Variation</p>
@@ -197,7 +171,7 @@ const Home = () => {
                         <button>
                            <img
                               className='shopbag'
-                              src={ShoppingBag}
+                              src={IMG('shopping-bag.svg')}
                               alt='Shopbag'
                            />
                            Add to Cart
@@ -210,7 +184,7 @@ const Home = () => {
                   <div></div>
                   <div className='recipe-info-div'>
                      <p>
-                        <img src={Star} alt='Star rating' />
+                        <img src={IMG('star.png')} alt='Star rating' />
                         <span>7.5 Rating</span>
                      </p>
                      <p>Attribute Variation</p>
@@ -219,7 +193,7 @@ const Home = () => {
                         <button>
                            <img
                               className='shopbag'
-                              src={ShoppingBag}
+                              src={IMG('shopping-bag.svg')}
                               alt='Shopbag'
                            />
                            Add to Cart
@@ -232,7 +206,7 @@ const Home = () => {
                   <div></div>
                   <div className='recipe-info-div'>
                      <p>
-                        <img src={Star} alt='Star rating' />
+                        <img src={IMG('star.png')} alt='Star rating' />
                         <span>7.5 Rating</span>
                      </p>
                      <p>Attribute Variation</p>
@@ -241,7 +215,7 @@ const Home = () => {
                         <button>
                            <img
                               className='shopbag'
-                              src={ShoppingBag}
+                              src={IMG('shopping-bag.svg')}
                               alt='Shopbag'
                            />
                            Add to Cart
@@ -282,7 +256,7 @@ const Home = () => {
             <h1>Client Testimonials</h1>
             <img
                className='yellow-streak'
-               src={YellowPaint}
+               src={IMG('yellow-paint.svg')}
                alt='Yellow streak'
             />
             <p style={{ marginBottom: 50 }}>
@@ -292,12 +266,12 @@ const Home = () => {
             <div className='testimonial-div'>
                <div>
                   <img
-                     src={WomanEatingBurger}
+                     src={IMG('lazy-holding-burger.png')}
                      alt='Happy lady eating our tasty burger'
                   />
                </div>
                <div className='quote-div'>
-                  <img className='comma-img' src={RedComma} alt='Red commas' />
+                  <img className='comma-img' src={IMG('red-commas.svg')} alt='Red commas' />
                   <p>
                      Sed ut perspiciatis unde omnis iste natus error sit
                      voluptatem accusantium doloremque laudantium, totam rem
@@ -314,14 +288,14 @@ const Home = () => {
          </section>
          <section className='benefits-section'>
             <div>
-               <img src={PizzaDeliveryManIcon} alt='Pizza Delivery Guy' />
+               <img src={IMG('pizza-delivery-man-icon.svg')} alt='Pizza Delivery Guy' />
                <p>
                   Free shipping on <br /> first order
                </p>
                <p>Sign up for updates and get free shipping</p>
             </div>
             <div>
-               <img src={TimerIcon} alt='Timer' />
+               <img src={IMG('timer.svg')} alt='Timer' />
                <p>
                   30 minutes <br /> delivery
                </p>
@@ -332,7 +306,7 @@ const Home = () => {
                </p>
             </div>
             <div>
-               <img src={BurgerIcon} alt='Burger' />
+               <img src={IMG('burger.svg')} alt='Burger' />
                <p>
                   Best quality <br /> guarantee
                </p>
@@ -343,7 +317,7 @@ const Home = () => {
                </p>
             </div>
             <div>
-               <img src={MealIcon} alt='Collection of food items' />
+               <img src={IMG('meal.svg')} alt='Collection of food items' />
                <p>
                   Variety of <br /> dishes
                </p>
@@ -360,7 +334,7 @@ const Home = () => {
                <button>Call us</button>
                <h1>1-234-567-890</h1>
                <div>
-                  <img className='clock' src={ClockIcon} alt='Clock icon' />
+                  <img className='clock' src={IMG('clock.png')} alt='Clock icon' />
                   <p>
                      Mon-Thu: 11.00 – 23.00 <br />
                      Sat: 12.00 – 23.00 | sun: 12.00 – 21.00
@@ -369,7 +343,7 @@ const Home = () => {
                <div>
                   <img
                      className='location'
-                     src={LocationMarker}
+                     src={IMG('location-marker.png')}
                      alt='Location marker icon'
                   />
                   <p>
@@ -377,7 +351,7 @@ const Home = () => {
                      New York City NY 10065
                   </p>
                </div>
-               <img className='socials' src={SocialMediaIcons} alt='' />
+               <img className='socials' src={IMG('social-media-icons.svg')} alt='Social media icons' />
             </div>
             <div></div>
          </section>
@@ -395,7 +369,7 @@ const Home = () => {
                </p>
                <img
                   className='payments'
-                  src={PaymentIcons}
+                  src={IMG('payment-icons.svg')}
                   alt='Forms of payment icons'
                />
             </div>
