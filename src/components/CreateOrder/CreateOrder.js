@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
-import foods from './../../utils/FoodData';
+import React, { useContext } from 'react';
+import { FoodBagContext } from '../../state/BagState';
+import foods, { formatPrice } from './../../utils/foodData';
 import { ReactComponent as StreakUnderline } from '../../assets/styled-underline.svg';
 import Modal from './../../utils/Modal';
+import { useTitle } from './../../hooks/useTitle';
 
 const CreateOrder = ({ orders, setOrders }) => {
-   const [openFoodModal, setFoodModal] = React.useState();
-   const [quantities, setQuantities] = useState({ });
+   document.title = 'Kanapka - Menu'
+   const [openFoodModal, setFoodModal] = React.useState(null);
+   useTitle({openFoodModal, orders});
+   const { closeBag } = useContext(FoodBagContext);
 
    const handleFoodModal = (food) => {
       setFoodModal(food);
-   };
-
-   const updateField = (name, quantity) => {
-      console.log(name, quantity)
-      setQuantities({
-         ...quantities,
-         [name]: quantity,
-      });
+      closeBag();
    };
 
    return (
@@ -45,9 +42,9 @@ const CreateOrder = ({ orders, setOrders }) => {
                   <Modal 
                      isVisible={openFoodModal} 
                      setFoodModal={setFoodModal} 
-                     updateField={updateField} 
                      orders={orders}
                      setOrders={setOrders}
+                     formatPrice={formatPrice}
                   />
                ) : null}
             </section>

@@ -1,39 +1,67 @@
-import React from 'react';
-import { ReactComponent as Decrement } from '../assets/decrement.svg';
-import { ReactComponent as Increment } from '../assets/increment.svg';
+import React, { useContext } from 'react';
+import { FoodBagContext } from '../state/BagState';
+import { useQuantity, usePieces } from '../hooks/useQuantity';
+import { useSauce } from '../hooks/useSauce';
+import CustomizeOrder from '../components/CreateOrder/CustomizeOrder';
+import QuantityButtons from './QuantityButtons';
 
 export const Modal = React.memo((props) => {
-   const { isVisible, updateField, orders, setOrders } = props;
-   const body = document.body;
-   console.log(orders)
+   const { isVisible, orders, setOrders, formatPrice, setFoodModal } = props;
+   const { setBagOpen } = useContext(FoodBagContext);
+
+   const quantity = useQuantity(isVisible && isVisible.quantity);
+   const pieces = usePieces(isVisible && isVisible.pieces);
+   const allSauces = useSauce(isVisible.sauces);
 
    const closeModalHandler = () => {
-      body.style.overflow = 'auto';
       const modalContainer = document.querySelector('.modal-content-container');
-      if (modalContainer) {
-         modalContainer.style.animation = 'hide 0.2s';
-      }
+      if (modalContainer) modalContainer.style.animation = 'hide 0.2s';
       setTimeout(() => {
-         props.setFoodModal(null);
+         setFoodModal(null);
       }, 100);
    };
 
    window.onclick = (event) => {
       const modal = document.getElementById('modal');
-      if (event.target === modal) {
-         closeModalHandler();
-      }
+      if (event.target === modal) closeModalHandler();
    };
+
+   const hasSauceAttribute = (food) => {
+      return food.tags.includes('includes-sauces');
+   };
+
+   const filterSelectedSauces = allSauces.sauces.filter((sauce) => sauce.checked);
 
    const order = {
       name: isVisible.name,
-      price: `${isVisible.price}`
+      price: isVisible.price,
+      quantity: quantity.value,
+      ...(isVisible.pieces && { pieces: pieces.value }),
+      ...(hasSauceAttribute(isVisible) && { sauces: filterSelectedSauces }),
+   };
+
+   const itemAlreadyExists = (orders, order) => {
+      const item = orders.some((item) => item.name === order.name);
+      if (item) return true;
    };
 
    const handleAddToOrder = () => {
+      if (itemAlreadyExists(orders, order)) {
+         closeModalHandler();
+         return setBagOpen(true);
+      };
       setOrders([...orders, order]);
       closeModalHandler();
+      setBagOpen(true);
    };
+
+   const setOrderPrice = () => {
+      if (isVisible.pieces && pieces.value === 8) order.price = 2.99;
+      if (filterSelectedSauces.length > 2) return order.quantity * order.price + 0.30;
+      return order.quantity * order.price;
+   };
+
+   const onInputChanged = (e) => pieces.setValue(Number(e.currentTarget.value));
 
    return (
       <span>
@@ -50,27 +78,50 @@ export const Modal = React.memo((props) => {
                            <h3>{isVisible.name}</h3>
                         </span>
                         <span>
-                           <span>${isVisible.price.toFixed(2)}</span>
-                           <button className='add-button' onClick={handleAddToOrder}>Add to Bag</button>
+                           <span>{formatPrice(setOrderPrice(order))}</span>
+                           <button
+                              className='add-button'
+                              onClick={handleAddToOrder}>
+                              Add to Bag
+                           </button>
                         </span>
                      </div>
                      <div className='modal-content'>
-                        <hr />
+                        {Object.keys(isVisible).indexOf('pieces') >= 0 ? (
+                           <>
+                              <h2>Pieces</h2>
+                              <div className='inputGroup'>
+                                 <input
+                                    id='four-pieces'
+                                    name='pieces'
+                                    type='radio'
+                                    value={4}
+                                    onChange={onInputChanged}
+                                    defaultChecked
+                                 />
+                                 <label htmlFor='four-pieces'>4 Pieces</label>
+                              </div>
+                              <div className='inputGroup'>
+                                 <input
+                                    id='eight-pieces'
+                                    name='pieces'
+                                    type='radio'
+                                    value={8}
+                                    onChange={onInputChanged}
+                                 />
+                                 <label htmlFor='eight-pieces'>8 Pieces</label>
+                              </div>
+                              <hr />
+                           </>
+                        ) : null}
                         <h2>Quantity</h2>
                         <div className='quantity-section'>
-                           <div>${isVisible.price.toFixed(2)}</div>
+                           <div>{formatPrice(setOrderPrice(order))}</div>
                            <div className='quantity-buttons'>
-                              <button disabled name={isVisible.name}>
-                                 <Decrement />
-                              </button>
-                              <span>1</span>
-                              <button name={isVisible.name} onClick={() => {
-                                 updateField(isVisible.name, 1);
-                              }}>
-                                 <Increment />
-                              </button>
+                              <QuantityButtons quantity={quantity} />
                            </div>
                         </div>
+                        { hasSauceAttribute(isVisible) && <CustomizeOrder {...allSauces} />  }
                      </div>
                   </div>
                </div>

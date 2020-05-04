@@ -1,155 +1,163 @@
+export const formatPrice = (price) => {
+   return price.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD'
+   });
+} ;
 
-
-const IMG = (imgName) => {
+const foodImage = (imgName) => {
    return require(`../assets/images/FoodItems/${imgName}`);
+};
+
+const sauceImage = (imgName) => {
+   return require(`../assets/images/Toppings/${imgName}`);
 };
 
 export const foods = [
    {
-      img: IMG('crispy-chicken-sandwich.jpg'),
+      img: foodImage('crispy-chicken-sandwich.jpg'),
       name: 'Crispy Chicken Sandwich',
       section: 'Food',
       price: 1.00,
       tags: ['chicken'],
    },
    {
-      img: IMG('double-cheeseburger.jpg'),
-      name: 'Double Cheeseburger',
+      img: foodImage('ultimate-cheeseburger.jpg'),
+      name: 'Ultimate Cheeseburger',
       section: 'Food',
       price: 1.69,
-      tags: ['burger'],
+      tags: ['burger', 'cheeseburger'],
    },
    {
-      img: IMG('SpicyChickenSandwich.jpg'),
+      img: foodImage('double-cheeseburger.jpg'),
+      name: 'Double Cheeseburger',
+      section: 'Food',
+      price: 2.39,
+      tags: ['burger', 'cheeseburger'],
+   },
+   {
+      img: foodImage('SpicyChickenSandwich.jpg'),
       name: 'Spicy Chicken Sandwich',
       section: 'Food',
       price: 1.00,
       tags: ['sandwich', 'chicken'],
    },
    {
-      img: IMG('Ultimate-Bacon-Cheeseburger.jpg'),
+      img: foodImage('Ultimate-Bacon-Cheeseburger.jpg'),
       name: 'Ultimate Bacon Cheeseburger',
       section: 'Food',
       price: 3.29,
       tags: ['burger', 'cheeseburger'],
    },
    {
-      img: IMG('chicken-nuggets.jpg'),
+      img: foodImage('chicken-nuggets.jpg'),
       name: 'Chicken Nuggets',
       section: 'Food',
       price: 1.19,
-      tags: ['chicken', 'sides'],
-      pieces: 'yes',
+      tags: ['chicken', 'sides', 'includes-sauces'],
+      pieces: 4,
    },
    {
-      img: IMG('chicken-fries.jpeg'),
+      img: foodImage('chicken-fries.jpeg'),
       name: 'Chicken Fries',
       section: 'Food',
       price: 1.39,
-      tags: ['fries', 'sides', 'chicken'],
+      tags: ['fries', 'sides', 'chicken', 'includes-sauces'],
    },
    {
-      img: IMG('mozzarella-sticks.jpg'),
+      img: foodImage('mozzarella-sticks.jpg'),
       name: 'Mozzarella Sticks',
       section: 'Food',
       price: 1.39,
-      tags: ['sides'],
-      pieces: 'yes'
+      tags: ['sides', 'includes-sauces'],
+      pieces: 4
    },
    {
-      img: IMG('chicken-tenders.jpg'),
+      img: foodImage('chicken-tenders.jpg'),
       name: 'Chicken Tenders',
       section: 'Food',
       price: 1.39,
-      tags: ['chicken', 'sides'],
-      pieces: 'yes'
+      tags: ['chicken', 'sides', 'includes-sauces'],
+      pieces: 4
    },
    {
-      img: IMG('chili-cheese-fries.jpg'),
+      img: foodImage('chili-cheese-fries.jpg'),
       name: 'Chili Cheese Fries',
       section: 'Food',
       price: 1.39,
-      tags: ['fries', 'sides'],
+      tags: ['fries', 'sides', 'includes-sauces'],
    },
    {
-      img: IMG('curlyfries.jpg'),
+      img: foodImage('curlyfries.jpg'),
       name: 'Curly Fries',
       section: 'Food',
       price: 1.39,
-      tags: ['fries', 'sides'],
+      tags: ['fries', 'sides', 'includes-sauces'],
    },
    {
-      img: IMG('french-fries.jpg'),
+      img: foodImage('french-fries.jpg'),
       name: 'French Fries',
       section: 'Food',
       price: 1.39,
-      tags: ['fries', 'sides'],
+      tags: ['fries', 'sides', 'includes-sauces'],
    },
    {
-      img: IMG('waffle-fries.jpg'),
+      img: foodImage('waffle-fries.jpg'),
       name: 'Waffle Fries',
       section: 'Food',
       price: 1.39,
-      tags: ['fries', 'sides'],
+      tags: ['fries', 'sides', 'includes-sauces'],
    },
    {
-      img: IMG('vegan-sugar-cookie.jpg'),
+      img: foodImage('vegan-sugar-cookie.jpg'),
       name: 'Vegan Sugar Cookies',
       section: 'Food',
       price: 1.00,
       tags: ['cookie', 'vegan', 'sweets', 'sides'],
    },
    {
-      img: IMG('applepie-mini.jpg'),
+      img: foodImage('applepie-mini.jpg'),
       name: 'Mini Applepie',
       section: 'Food',
       price: 1.49,
       tags: ['sweets', 'sides'],
    },
    {
-      img: IMG('CheesyGorditaCrunch.jpg'),
+      img: foodImage('CheesyGorditaCrunch.jpg'),
       name: 'Cheesy Gordita Taco',
       section: 'Food',
       price: 1.69,
       tags: ['taco'],
    },
    {
-      img: IMG('taco.jpg'),
+      img: foodImage('taco.jpg'),
       name: 'Taco',
       section: 'Food',
       price: 1.29,
       tags: ['taco'],
    },
    {
-      img: IMG('milkshake-sundae-chocolate.png'),
+      img: foodImage('milkshake-sundae-chocolate.png'),
       name: 'Chocolate Milkshake',
       section: 'Drink',
       price: 3.19,
       tags: ['drink', 'milkshake'],
    },
    {
-      img: IMG('strawberry-milkshake.png'),
+      img: foodImage('strawberry-milkshake.png'),
       name: 'Strawberry Milkshake',
       section: 'Drink',
       price: 3.19,
       tags: ['drink', 'milkshake'],
    },
    {
-      img: IMG('vanilla-milkshake.png'),
+      img: foodImage('vanilla-milkshake.png'),
       name: 'Vanilla Milkshake',
       section: 'Drink',
       price: 3.19,
       tags: ['drink', 'milkshake'],
    },
 ];
-
-// export const Menu = () => {
-//    return <div>
-//       {foods.map((food) => (
-//         <img key={food.name} src={food.img} alt='ds' />
-//       ))}
-//    </div>
-// };
 
 export const foodsList = foods.reduce((res, food) => {
    if (!res[food.section]) {
@@ -158,5 +166,40 @@ export const foodsList = foods.reduce((res, food) => {
    res[food.section].push(food);
    return res;
 }, {});
+
+export const saucesList = [
+   { 
+      name: 'Barbeque Sauce',
+      img: sauceImage('BarbequeSauce.svg'),
+   },
+   {
+      name: 'Honey Mustard Sauce',
+      img: sauceImage('HoneyMustardSauce.svg'),
+   },
+   {
+      name: 'Sweet & Sour Sauce',
+      img: sauceImage('Sweet&SourSauce.svg'),
+   },
+   {
+      name: 'Ranch Dip',
+      img: sauceImage('RanchDip.svg'),
+   },
+   {
+      name: 'Buffalo Sauce',
+      img: sauceImage('BuffaloSauce.svg'),
+   },
+   {
+      name: 'Ketchup',
+      img: sauceImage('Ketchup.svg'),
+   },
+   {
+      name: 'Mayonnaise',
+      img: sauceImage('Mayonnaise.svg'),
+   },
+   {
+      name: 'Marinara Sauce',
+      img: sauceImage('MarinaraSauce.svg'),
+   },
+];
 
 export default foods;

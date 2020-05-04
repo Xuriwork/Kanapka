@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Hamburger from '../../assets/images/HomeAssets/hamburger.svg';
 import Pizza from '../../assets/images/HomeAssets/pizza.svg';
 import Shakes from '../../assets/images/HomeAssets/food_delivery_10.png';
@@ -23,9 +23,10 @@ import TimerIcon from '../../assets/images/HomeAssets/timer.svg';
 import BurgerIcon from '../../assets/images/HomeAssets/burger.svg';
 import MealIcon from '../../assets/images/HomeAssets/meal.svg';
 
-import ScrollDown from '../../assets/images/HomeAssets/scroll-down.svg';
 import YellowPaint from '../../assets/images/HomeAssets/yellow-paint.svg';
 import RedComma from '../../assets/images/HomeAssets/red-commas.svg';
+
+import HomeBurger from '../../assets/images/HomeAssets/Burger-Transparent-Images.png';
 
 import Logo from '../../assets/icons/KanapkaIcon.svg';
 
@@ -34,22 +35,20 @@ const Home = () => {
       <div className='main-site-container'>
          <div className='main-container'>
             <div className='main-container-inner'>
-               <h1>Party Time!</h1>
-               <div className='paint'>
-                  <p>
-                     Buy any 2 burgers and <br /> get 1.5L Pepsi Free
-                  </p>
+               <div>
+                  <h2>Most Popular</h2>
+                  <h1>Ultimate Cheeseburger</h1>
+                  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br />
+                   dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                  <Link to='/menu'>
+                     <button className='cta-button'>
+                        order now<i className='gg-arrow-right'></i>
+                     </button>
+                  </Link>
                </div>
-               <button className='cta-button'>
-                  order now<i className='gg-arrow-right'></i>
-               </button>
-            </div>
-            <div className='scroll-down'>
-               <img
-                  className='scroll-down-img'
-                  src={ScrollDown}
-                  alt='scroll-down'
-               />
+               <div>
+                  <img src={HomeBurger} alt='Tasty burger' />
+               </div>
             </div>
          </div>
 
