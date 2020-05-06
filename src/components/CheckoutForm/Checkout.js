@@ -26,38 +26,13 @@ export const Checkout = (props) => {
     const [phoneNumber, setPhoneNumber] = useState(null);
     const { register, handleSubmit } = useForm();
 
-    const generateDate = () => {
-        const now = new Date();
-
-        const year = now.getFullYear();
-
-        let month = now.getMonth() + 1;
-        if (month < 10) {
-            month = `0${month}`;
-        }
-
-        let day = now.getDate();
-        if (day < 10) {
-            day = `0${day}`;
-        }
-
-        return {
-            full: `${year}-${month}-${day}`,
-            monthYear: `${year}-${month}`,
-        };
-    };
-
     const checkoutOrder = (data) => {
-        data.email = userEmail;
-        data.userId = userId;
-        data.phoneNumber = phoneNumber;
-        const date = generateDate();
-        const order = { orderItems: orders, date: new Date() };
-        handleCheckout({
-            date,
-            order,
-            userInfo: data,
-        });
+      data.email = userEmail;
+      data.userId = userId;
+      data.phoneNumber = phoneNumber;
+
+      const order = { orderItems: orders, date: new Date() };
+      handleCheckout({ order, userInfo: data });
     };
 
     const creditCardNumberRegex = /(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/;

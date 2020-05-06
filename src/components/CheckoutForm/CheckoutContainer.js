@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Redirect } from 'react-router-dom';
+
 import Checkout from './Checkout';
 import { usersCollection, ordersCollection } from '../../utils/Firebase';
 import { useSession } from '../../hooks/useSession';
@@ -18,6 +20,27 @@ export const CheckoutContainer = ({
     const userEmail = user.email;
     const userId = user.uid;
 
+    const generateDate = () => {
+        const now = new Date();
+
+        const year = now.getFullYear();
+
+        let month = now.getMonth() + 1;
+        if (month < 10) {
+            month = `0${month}`;
+        }
+
+        let day = now.getDate();
+        if (day < 10) {
+            day = `0${day}`;
+        }
+
+        return {
+            full: `${year}-${month}-${day}`,
+            monthYear: `${year}-${month}`,
+        };
+    };
+
     const incrementOrderItem = (index) => {
         const newOrders = [...orders];
         const targetedOrder = newOrders[index];
@@ -32,7 +55,9 @@ export const CheckoutContainer = ({
         setOrders(newOrders);
     };
 
-    const handleCheckout = ({ date, docDate, order, userInfo }) => {
+    const handleCheckout = ({ order, userInfo }) => {
+        const date = generateDate();
+
         usersCollection
             .doc(user.uid)
             .collection('orderHistory')
@@ -41,6 +66,10 @@ export const CheckoutContainer = ({
             .doc(date.monthYear)
             .collection(date.full)
             .add({ date: order.date, userInfo, orderItems: order.orderItems });
+    };
+
+    if (!orders || orders.length === 0) {
+        return <Redirect to={{pathname:'/'}} />
     };
 
     return (

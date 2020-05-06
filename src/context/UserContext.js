@@ -29,12 +29,13 @@ export const useAuth = () => {
     return state;
 };
 
-export const PrivateRoute = ({component: Component, auth }) => (
-  <Route render={props => auth === true
+export const PrivateRoute = ({component: Component, auth }) => {
+  console.log(!!auth)
+  return <Route render={props => !!auth === true
     ? <Component auth={auth} {...props} />
     : <Redirect to={{pathname:'/'}} />
   }
   />
-);
+};
 
 export default UserContext;

@@ -34,9 +34,9 @@ const App = () => {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/menu' render={(props) => <CreateOrder {...props} {...orders} />} />
-              <Route exact path='/sign-up' component={SignUpContainer} />
-              <Route exact path='/sign-in' component={SignInContainer} />
-              <Route exact path='/checkout' render={(props) => <CheckoutContainer {...orders} />} />
+              <Route path='/sign-up' component={SignUpContainer} />
+              <Route path='/sign-in' component={SignInContainer} />
+              <PrivateRoute path='/checkout' auth={user} component={(props) => <CheckoutContainer {...orders} />} />
               <PrivateRoute path='/orders' auth={user} component={OrdersContainer} />  
             </Switch>
           </div>
