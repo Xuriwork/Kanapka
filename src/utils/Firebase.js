@@ -15,4 +15,7 @@ export const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+export const usersCollection = firebase.firestore().collection('users');
+export const ordersCollection = firebase.firestore().collection('orders');
+
 export default firebase;

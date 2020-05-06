@@ -19,7 +19,14 @@ export const foods = [
       name: 'Crispy Chicken Sandwich',
       section: 'Food',
       price: 1.00,
-      tags: ['chicken'],
+      tags: ['chicken', 'sandwich'],
+   },
+   {
+      img: foodImage('crispy-chicken-blt.jpg'),
+      name: 'Crispy Chicken BLT',
+      section: 'Food',
+      price: 1.00,
+      tags: ['chicken', 'sandwich'],
    },
    {
       img: foodImage('ultimate-cheeseburger.jpg'),

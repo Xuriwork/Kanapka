@@ -12,7 +12,7 @@ const QuantityButtons = ({ quantity, index, incrementOrderItem, decrementOrderIt
                   onClick={() => quantity.setValue(quantity.value - 1)}>
                   <Decrement />
                </button>
-               <span>{quantity.value}</span>
+               <span className='quanitity-value'>{quantity.value}</span>
                <button
                   disabled={quantity.value === 9}
                   onClick={() => quantity.setValue(quantity.value + 1)}>
@@ -26,7 +26,7 @@ const QuantityButtons = ({ quantity, index, incrementOrderItem, decrementOrderIt
                   onClick={() => decrementOrderItem(index)}>
                   <Decrement />
                </button>
-               <span>{quantity}</span>
+               <span className='quanitity-value'>{quantity}</span>
                <button
                   disabled={quantity === 9}
                   onClick={() => incrementOrderItem(index)}>

@@ -4,14 +4,16 @@ import { Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import CreateOrder from './components/CreateOrder/CreateOrder';
-import SignUpContainer from './components/Forms/SignUpContainer';
-import SignInContainer from './components/Forms/SignInContainer';
+import SignUpContainer from './components/AuthForms/SignUpContainer';
+import SignInContainer from './components/AuthForms/SignInContainer';
+import CheckoutContainer from './components/CheckoutForm/CheckoutContainer';
+import OrdersContainer from './components/Orders/OrdersContainer';
 import Loading from './utils/Loading';
 import history from './utils/history';
 
 import useOrders from './hooks/useOrder';
-import { FoodBagProvider } from './context/BagContext';
 import UserContext, { useAuth, PrivateRoute } from './context/UserContext';
+import { StateProvider } from './state/state';
 
 import './App.scss';
 
@@ -25,7 +27,7 @@ const App = () => {
 
   return (
     <UserContext.Provider value={{ user }}>
-      <FoodBagProvider>
+    <StateProvider>
         <Router history={history}>
           <Navbar {...orders} />
           <div className='app'>
@@ -34,11 +36,12 @@ const App = () => {
               <Route path='/menu' render={(props) => <CreateOrder {...props} {...orders} />} />
               <Route exact path='/sign-up' component={SignUpContainer} />
               <Route exact path='/sign-in' component={SignInContainer} />
-              <PrivateRoute path='/orders' auth={user} component />  
+              <Route exact path='/checkout' render={(props) => <CheckoutContainer {...orders} />} />
+              <PrivateRoute path='/orders' auth={user} component={OrdersContainer} />  
             </Switch>
           </div>
         </Router>
-      </FoodBagProvider>
+      </StateProvider>
     </UserContext.Provider>
   );
 };

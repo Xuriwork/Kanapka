@@ -31,13 +31,14 @@ export const Modal = React.memo((props) => {
    };
 
    const filterSelectedSauces = allSauces.sauces.filter((sauce) => sauce.checked);
+   const filterSelectedSaucesNames = filterSelectedSauces.map((sauce) => sauce.name);
 
    const order = {
       name: isVisible.name,
       price: isVisible.price,
       quantity: quantity.value,
       ...(isVisible.pieces && { pieces: pieces.value }),
-      ...(hasSauceAttribute(isVisible) && { sauces: filterSelectedSauces }),
+      ...(hasSauceAttribute(isVisible) && { sauces: filterSelectedSaucesNames }),
    };
 
    const itemAlreadyExists = (orders, order) => {

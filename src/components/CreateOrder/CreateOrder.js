@@ -22,7 +22,7 @@ const CreateOrder = ({ orders, setOrders }) => {
             <h1>Our Menu</h1>
             <StreakUnderline />
          </div>
-         <div className='create-order-component'>
+         <div className='menu-list-component'>
             <section className='cards'>
                {foods.map((food) => (
                   <div

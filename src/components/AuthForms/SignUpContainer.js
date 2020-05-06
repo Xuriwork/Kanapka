@@ -11,7 +11,6 @@ export const SignUpContainer = () => {
          .createUserWithEmailAndPassword(email, password)
          .then(({ user }) => {
             if (user) {
-               console.log(user);
                user.updateProfile({ displayName: name, phoneNumber });
                return user;
             }
