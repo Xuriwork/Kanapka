@@ -1,20 +1,13 @@
 /* eslint-disable no-useless-escape */
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { useSession } from '../../hooks/useSession';
-
 const SignUp = ({ handleSignUp, errors }) => {
-   const user = useSession();
    const { register, handleSubmit, errors: formErrors } = useForm();
 
    const signUp = (data) => {
       handleSignUp(data.email, data.password, data.name, data.phoneNumber);
-   };
-
-   if (user) {
-      return <Redirect to={{pathname:'/'}} />
    };
 
    return (

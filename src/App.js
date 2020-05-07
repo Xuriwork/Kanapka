@@ -6,13 +6,16 @@ import Home from './components/Home/Home';
 import CreateOrder from './components/CreateOrder/CreateOrder';
 import SignUpContainer from './components/AuthForms/SignUpContainer';
 import SignInContainer from './components/AuthForms/SignInContainer';
-import CheckoutContainer from './components/CheckoutForm/CheckoutContainer';
-import OrdersContainer from './components/Orders/OrdersContainer';
+import CheckoutContainer from './components/Checkout/CheckoutContainer';
+import OrderHistoryContainer from './components/Orders/OrderHistoryContainer';
+import OrderSuccess from './components/Checkout/OrderSuccess';
+
 import Loading from './utils/Loading';
 import history from './utils/history';
 
 import useOrders from './hooks/useOrder';
-import UserContext, { useAuth, PrivateRoute } from './context/UserContext';
+import UserContext, { useAuth } from './context/UserContext';
+import { PrivateRoute, OrderSuccessRoute, PublicRoute } from './components/Routes/Routes';
 import { StateProvider } from './state/state';
 
 import './App.scss';
@@ -34,10 +37,11 @@ const App = () => {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/menu' render={(props) => <CreateOrder {...props} {...orders} />} />
-              <Route path='/sign-up' component={SignUpContainer} />
-              <Route path='/sign-in' component={SignInContainer} />
-              <PrivateRoute path='/checkout' auth={user} component={(props) => <CheckoutContainer {...orders} />} />
-              <PrivateRoute path='/orders' auth={user} component={OrdersContainer} />  
+              <PublicRoute path='/sign-up' component={SignUpContainer} auth={!!user} restricted={true} />
+              <PublicRoute path='/sign-in' component={SignInContainer} auth={!!user} restricted={true} />
+              <PrivateRoute path='/checkout' component={(props) => <CheckoutContainer {...props} {...orders} />} auth={!!user} />
+              <PrivateRoute path='/order-history' component={OrderHistoryContainer} auth={!!user} />  
+              <OrderSuccessRoute path='/order-success' component={OrderSuccess} auth={!!user} />
             </Switch>
           </div>
         </Router>

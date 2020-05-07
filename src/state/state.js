@@ -5,8 +5,8 @@ export const StateContext = createContext();
 
 const initialState = {
     loading: false,
-    orderSuccessful: null,
     errors: null,
+    orderPlaced: false
 };
 
 const reducer = (state, action) => {
@@ -21,10 +21,12 @@ const reducer = (state, action) => {
                 ...state,
                 loading: false,
             };
-        case 'orderSuccessful':
+        case 'orderPlaced':
+        console.log(action)
             return {
                 ...state,
-                orderSuccessful: true,
+                order: action.payload,
+                orderPlaced: true,
             };
         default:
             return state;

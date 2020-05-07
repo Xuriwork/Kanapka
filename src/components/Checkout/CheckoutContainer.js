@@ -5,17 +5,11 @@ import { Redirect } from 'react-router-dom';
 import Checkout from './Checkout';
 import { usersCollection, ordersCollection } from '../../utils/Firebase';
 import { useSession } from '../../hooks/useSession';
+import { useStateValue } from '../../state/state';
 
-export const CheckoutContainer = ({
-    orders,
-    getOrderPrice,
-    subtotal,
-    total,
-    tax,
-    setOrders,
-    removeItem,
-    deliveryCost,
-}) => {
+export const CheckoutContainer = ({ orders, getOrderPrice, subtotal, total, tax, setOrders, removeItem, deliveryCost, history }) => {
+
+    const [state, dispatch] = useStateValue();
     const user = useSession();
     const userEmail = user.email;
     const userId = user.uid;
@@ -62,15 +56,22 @@ export const CheckoutContainer = ({
             .doc(user.uid)
             .collection('orderHistory')
             .add({ date: order.date, order: order.orderItems });
+            
         ordersCollection
             .doc(date.monthYear)
             .collection(date.full)
-            .add({ date: order.date, userInfo, orderItems: order.orderItems });
+            .add({ date: order.date, userInfo, orderItems: order.orderItems })
+            .then(() => {
+                dispatch({ type: 'orderPlaced', payload: order });
+                if (state.orderPlaced === true) history.push('/order-success');
+            })
     };
 
     if (!orders || orders.length === 0) {
-        return <Redirect to={{pathname:'/'}} />
+        return <Redirect to={{pathname:'/menu'}} />
     };
+
+    console.log(state)
 
     return (
         <Checkout

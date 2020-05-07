@@ -27,12 +27,12 @@ export const Checkout = (props) => {
     const { register, handleSubmit } = useForm();
 
     const checkoutOrder = (data) => {
-      data.email = userEmail;
-      data.userId = userId;
-      data.phoneNumber = phoneNumber;
+        data.email = userEmail;
+        data.userId = userId;
+        data.phoneNumber = phoneNumber;
 
-      const order = { orderItems: orders, date: new Date() };
-      handleCheckout({ order, userInfo: data });
+        const order = { orderItems: orders, date: new Date() };
+        handleCheckout({ order, userInfo: data });
     };
 
     const creditCardNumberRegex = /(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/;
@@ -61,10 +61,7 @@ export const Checkout = (props) => {
                                                     }
                                                 />
                                                 <span className='order-price-span'>
-                                                    &#215;{' '}
-                                                    {formatPrice(
-                                                        getOrderPrice(order)
-                                                    )}
+                                                  &#128937;{' '}{formatPrice(getOrderPrice(order))}
                                                 </span>
                                             </span>
                                         </span>
@@ -104,7 +101,10 @@ export const Checkout = (props) => {
                     </div>
                     <div>
                         <span>Delivery</span>
-                        <span>{deliveryCost}</span>
+                        {
+                          deliveryCost === 0 ? <span style={{ color: '#2cb978', fontWeight: 'bold' }}>FREE</span> : 
+                          (<span>{formatPrice(deliveryCost)}</span>)
+                        }
                     </div>
                     <div>
                         <span>Total</span>

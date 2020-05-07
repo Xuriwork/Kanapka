@@ -23,8 +23,8 @@ export const useOrders = () => {
 
    const subtotal = orders.reduce(reducer, 0);
    const tax = subtotal * 0.07;
-   const total = subtotal + tax;
-   const deliveryCost = total >= 20 ? 'FREE' : '$2.50';
+   const deliveryCost = subtotal + tax >= 20 ? 0 : 2.00;
+   const total = subtotal + tax + deliveryCost;
 
    return {
       orders,

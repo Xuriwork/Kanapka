@@ -1,12 +1,8 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { useSession } from '../../hooks/useSession';
-
-
 const SignIn = ({ handleSignIn, errors }) => {
-   const user = useSession();
    const { register, handleSubmit, watch } = useForm();
 
    const watchEmail = watch('email');
@@ -15,10 +11,6 @@ const SignIn = ({ handleSignIn, errors }) => {
 
    const signIn = (data) => {
       handleSignIn(data.email, data.password);
-   };
-
-   if (user) {
-      return <Redirect to={{pathname:'/'}} />
    };
 
    return (
