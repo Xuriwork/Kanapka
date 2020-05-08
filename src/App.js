@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
@@ -8,7 +9,8 @@ import SignUpContainer from './components/AuthForms/SignUpContainer';
 import SignInContainer from './components/AuthForms/SignInContainer';
 import CheckoutContainer from './components/Checkout/CheckoutContainer';
 import OrderHistoryContainer from './components/Orders/OrderHistoryContainer';
-import OrderSuccess from './components/Checkout/OrderSuccess';
+import OrderSuccessContainer from './components/Checkout/OrderSuccessContainer';
+import NotFound from './components/NotFound';
 
 import Loading from './utils/Loading';
 import history from './utils/history';
@@ -19,6 +21,8 @@ import { PrivateRoute, OrderSuccessRoute, PublicRoute } from './components/Route
 import { StateProvider } from './state/state';
 
 import './App.scss';
+
+axios.defaults.baseURL = 'http://localhost:5001/kanapka-xuri/us-central1/api/'
 
 const App = () => {
   const orders = useOrders();
@@ -40,8 +44,9 @@ const App = () => {
               <PublicRoute path='/sign-up' component={SignUpContainer} auth={!!user} restricted={true} />
               <PublicRoute path='/sign-in' component={SignInContainer} auth={!!user} restricted={true} />
               <PrivateRoute path='/checkout' component={(props) => <CheckoutContainer {...props} {...orders} />} auth={!!user} />
+              <OrderSuccessRoute path='/order-success' component={OrderSuccessContainer} auth={!!user} />
               <PrivateRoute path='/order-history' component={OrderHistoryContainer} auth={!!user} />  
-              <OrderSuccessRoute path='/order-success' component={OrderSuccess} auth={!!user} />
+              <Route path='*' exact component={NotFound} />
             </Switch>
           </div>
         </Router>
@@ -49,7 +54,5 @@ const App = () => {
     </UserContext.Provider>
   );
 };
-
-//<Route path='*' exact={true} component={NotFound} />
 
 export default App;

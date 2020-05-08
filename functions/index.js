@@ -1,8 +1,16 @@
-const functions = require('firebase-functions');
+const { functions } = require('./utils/admin');
+const express = require('express');
+const cors = require('cors');
+const app = express();
+app.use(cors({ origin: true }));
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+const { signUp } = require('./handlers/user-functions');
+const { checkout, getUserOrderHistory } = require('./handlers/order-functions');
+const { authenticationMiddleware } = require('./utils/middleware');
+
+app.post('/sign-up', signUp);
+
+app.get('/order-history', authenticationMiddleware, getUserOrderHistory);
+app.post('/checkout', authenticationMiddleware, checkout);
+
+exports.api = functions.https.onRequest(app);

@@ -1,10 +1,8 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router';
 import { useStateValue } from '../../state/state';
-import { useAuth } from '../../context/UserContext';
 
 export const PrivateRoute = ({component: Component, auth, ...rest }) => {
-  
   return (
     <Route {...rest} render={props => !!auth
       ? <Component auth={auth} {...props} />

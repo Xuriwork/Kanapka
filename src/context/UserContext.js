@@ -7,7 +7,7 @@ const UserContext = React.createContext({
 
 export const useAuth = () => {
   const [state, setState] = useState(() => {
-    const user = firebase.auth().currentUser;
+  const user = firebase.auth().currentUser;
 
     return {
       userIsLoading: !user,
@@ -26,6 +26,7 @@ export const useAuth = () => {
   }, []);
 
   return state;
+
 };
 
 export default UserContext;

@@ -10,7 +10,7 @@ const SignIn = ({ handleSignIn, errors }) => {
    const isDisabled = !!watchEmail && !!watchPassword;
 
    const signIn = (data) => {
-      handleSignIn(data.email, data.password);
+      handleSignIn(data);
    };
 
    return (

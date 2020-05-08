@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import SignIn from './SignIn';
+
 import firebase from '../../utils/Firebase';
+import SignIn from './SignIn';
 
 export const SignInContainer = () => {
     const [errors, setErrors] = useState(null);
 
-    const handleSignIn = (email, password) => {
-        firebase.auth().signInWithEmailAndPassword(email, password)
+    const handleSignIn = (data) => {
+        firebase.auth().signInWithEmailAndPassword(data.email, data.password)
         .catch((error) => {
             setErrors(error.message);
         });

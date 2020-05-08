@@ -21,7 +21,8 @@ export const Navbar = ({
     getOrderPrice,
     history,
 }) => {
-    const user = useSession();
+    const { user } = useSession();
+
     const [isOpen, setOpen] = useState(false);
     const { isBagOpen, toggleBag, closeBag } = useContext(FoodBagContext);
 
@@ -67,11 +68,13 @@ export const Navbar = ({
                 <span className='desktop'>
                     <ul className='navbar-links'>
                         <Link to='/about'>About</Link>
-                        <Link to='/meun'>Menu</Link>
+                        <Link to='/menu'>Menu</Link>
                         <Link to='/gallery'>Gallery</Link>
                         <Link to='/blog'>Blog</Link>
-                        <Link to='/testimonials'>Testimonials</Link>
                         <Link to='/contact'>Contact</Link>
+                        {
+                            user && <Link to='/order-history'>Order History</Link>
+                        }
                     </ul>
                     <span className='action-links'>
                         {user ? (

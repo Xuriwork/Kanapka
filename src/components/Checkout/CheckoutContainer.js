@@ -1,39 +1,22 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
+import axios from 'axios';
+
 import Checkout from './Checkout';
-import { usersCollection, ordersCollection } from '../../utils/Firebase';
 import { useSession } from '../../hooks/useSession';
 import { useStateValue } from '../../state/state';
 
 export const CheckoutContainer = ({ orders, getOrderPrice, subtotal, total, tax, setOrders, removeItem, deliveryCost, history }) => {
-
     const [state, dispatch] = useStateValue();
-    const user = useSession();
+    const [isProcessing, setProcessing] = useState(false);
+    const { user, token } = useSession();
     const userEmail = user.email;
     const userId = user.uid;
 
-    const generateDate = () => {
-        const now = new Date();
-
-        const year = now.getFullYear();
-
-        let month = now.getMonth() + 1;
-        if (month < 10) {
-            month = `0${month}`;
-        }
-
-        let day = now.getDate();
-        if (day < 10) {
-            day = `0${day}`;
-        }
-
-        return {
-            full: `${year}-${month}-${day}`,
-            monthYear: `${year}-${month}`,
-        };
-    };
+    useEffect(() => {
+        if (state.orderPlaced === true) history.push('/order-success');
+    }, [history, state]);
 
     const incrementOrderItem = (index) => {
         const newOrders = [...orders];
@@ -49,23 +32,23 @@ export const CheckoutContainer = ({ orders, getOrderPrice, subtotal, total, tax,
         setOrders(newOrders);
     };
 
-    const handleCheckout = ({ order, userInfo }) => {
-        const date = generateDate();
-
-        usersCollection
-            .doc(user.uid)
-            .collection('orderHistory')
-            .add({ date: order.date, order: order.orderItems });
-            
-        ordersCollection
-            .doc(date.monthYear)
-            .collection(date.full)
-            .add({ date: order.date, userInfo, orderItems: order.orderItems })
-            .then(() => {
-                dispatch({ type: 'orderPlaced', payload: order });
-                if (state.orderPlaced === true) history.push('/order-success');
-            })
+    const headers = {
+        Authorization: `Bearer ${token}`
     };
+
+    const handleCheckout = (data) => {
+        setProcessing(true);
+        return axios.post('/checkout', data, {headers: headers})
+        .then((res) => {
+            console.log(res.data);
+            const { date, orderId, orderItems } = res.data;
+            dispatch({ type: 'orderPlaced', payload: {date, orderId, orderItems} });
+            setProcessing(false);
+            setOrders([]);
+        })
+        .catch((error) => console.error('error', error))
+    };
+
 
     if (!orders || orders.length === 0) {
         return <Redirect to={{pathname:'/menu'}} />
@@ -86,6 +69,7 @@ export const CheckoutContainer = ({ orders, getOrderPrice, subtotal, total, tax,
             removeItem={removeItem}
             deliveryCost={deliveryCost}
             handleCheckout={handleCheckout}
+            isProcessing={isProcessing}
         />
     );
 };

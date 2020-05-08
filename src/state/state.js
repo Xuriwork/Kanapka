@@ -6,7 +6,8 @@ export const StateContext = createContext();
 const initialState = {
     loading: false,
     errors: null,
-    orderPlaced: false
+    orderPlaced: false,
+    orderPlacedInfo: null
 };
 
 const reducer = (state, action) => {
@@ -22,10 +23,9 @@ const reducer = (state, action) => {
                 loading: false,
             };
         case 'orderPlaced':
-        console.log(action)
             return {
                 ...state,
-                order: action.payload,
+                orderPlacedInfo: action.payload,
                 orderPlaced: true,
             };
         default:

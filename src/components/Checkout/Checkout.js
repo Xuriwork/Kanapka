@@ -6,6 +6,7 @@ import en from 'react-phone-number-input/locale/en.json';
 
 import { formatPrice } from '../../utils/foodData';
 import QuantityButtons from '../../utils/QuantityButtons';
+import OrderProccessingModal from './OrderProcessingModal';
 
 import 'react-phone-number-input/style.css';
 
@@ -22,6 +23,7 @@ export const Checkout = (props) => {
         incrementOrderItem,
         decrementOrderItem,
         handleCheckout,
+        isProcessing
     } = props;
     const [phoneNumber, setPhoneNumber] = useState(null);
     const { register, handleSubmit } = useForm();
@@ -30,9 +32,8 @@ export const Checkout = (props) => {
         data.email = userEmail;
         data.userId = userId;
         data.phoneNumber = phoneNumber;
-
-        const order = { orderItems: orders, date: new Date() };
-        handleCheckout({ order, userInfo: data });
+        const date = new Date();
+        handleCheckout({ orderItems: orders, userInfo: data, orderDate: date });
     };
 
     const creditCardNumberRegex = /(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/;
@@ -375,6 +376,7 @@ export const Checkout = (props) => {
                     </div>
                 </form>
             </div>
+             {isProcessing ? (<OrderProccessingModal />) : null}
         </div>
     );
 };

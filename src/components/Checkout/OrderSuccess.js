@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import GreenVan from '../../assets/images/van.svg';
 
-export const OrderSuccess = () => {
+export const OrderSuccess = ({ orderId, orderItems }) => {
 
     return (
         <div className='success-order-component'>
@@ -17,10 +17,11 @@ export const OrderSuccess = () => {
                     delivery information or visit the "Orders" section to track
                     the delivery.
                 </p>
-                <h5>Order Number: 621-8095421-3654332</h5>
+                <h5>Order Number: {orderId}</h5>
                 <ul>
-                    <li>Hamburgers</li>
-                    <li>Fries</li>
+                    {orderItems.map((orderItem) => (
+                        <li key={orderItem.name}>{orderItem.name} &times; {orderItem.quantity}</li>
+                    ))}
                 </ul>
                 <p style={{ marginTop: '10px' }} className='order-history'><Link to='/order-history'>Go to orders</Link></p>
             </div>
