@@ -528,13 +528,13 @@ button {
     }
 
     //Order Processing Modal.js
-    
+
     .spinner {
       width: 40px;
       height: 50px;
       text-align: center;
     }
-    
+
     .spinner > div {
       background-color: var(--theme-color);
       height: 100%;
@@ -544,42 +544,50 @@ button {
       animation: sk-stretchdelay 1.2s infinite ease-in-out;
       margin: 0 2px;
     }
-    
+
     .spinner .rect2 {
       -webkit-animation-delay: -1.1s;
       animation-delay: -1.1s;
     }
-    
+
     .spinner .rect3 {
-      -webkit-animation-delay: -1.0s;
-      animation-delay: -1.0s;
+      -webkit-animation-delay: -1s;
+      animation-delay: -1s;
     }
-    
+
     .spinner .rect4 {
       -webkit-animation-delay: -0.9s;
       animation-delay: -0.9s;
     }
-    
+
     .spinner .rect5 {
       -webkit-animation-delay: -0.8s;
       animation-delay: -0.8s;
     }
-    
+
     @-webkit-keyframes sk-stretchdelay {
-      0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
-      20% { -webkit-transform: scaleY(1.0) }
-    }
-    
-    @keyframes sk-stretchdelay {
-      0%, 40%, 100% { 
-        transform: scaleY(0.4);
+      0%,
+      40%,
+      100% {
         -webkit-transform: scaleY(0.4);
-      }  20% { 
-        transform: scaleY(1.0);
-        -webkit-transform: scaleY(1.0);
+      }
+      20% {
+        -webkit-transform: scaleY(1);
       }
     }
 
+    @keyframes sk-stretchdelay {
+      0%,
+      40%,
+      100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+      }
+      20% {
+        transform: scaleY(1);
+        -webkit-transform: scaleY(1);
+      }
+    }
   }
 
   .order-procesing-modal {
@@ -664,7 +672,7 @@ button {
       font-size: 1.1em;
       text-transform: uppercase;
       text-align: center;
-  
+
       &:hover {
         background: var(--theme-button-hover);
       }
@@ -1474,6 +1482,16 @@ th {
       color: #cc0033;
       margin-top: 0;
     }
+    .form-name-error-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form-name-error {
+      width: 49%;
+      display: flex;
+    }
   }
 
   .sign-up-button {
@@ -1486,14 +1504,33 @@ th {
     letter-spacing: 1.3px;
     text-transform: uppercase;
     margin-top: 10px;
+    box-sizing: border-box;
 
     &:hover {
       background-color: var(--theme-button-hover);
     }
 
     &:disabled {
-      background-color: rgb(118, 118, 118);
-      cursor: not-allowed;
+      .sbl-circ-path {
+        height: 19px;
+        width: 19px;
+        color: #fff;
+        position: relative;
+        display: inline-block;
+        border: 3px solid;
+        border-radius: 50%;
+        border-right-color: #e6b940;
+        animation: rotate 1s linear infinite;
+      }
+    
+      @keyframes rotate {
+        0% {
+          transform: rotate(0);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     }
   }
 }
@@ -1850,9 +1887,8 @@ th {
       background-color: #9c9c9c38;
       font-size: 0.9em;
     }
-    
-    .order-description {
 
+    .order-description {
       > div {
         padding: 5px 10px;
 
@@ -1894,15 +1930,14 @@ th {
 
   .not-found-component {
     > div {
-  
       h1 {
         font-size: 15em;
       }
-  
+
       p {
         font-size: 1.2em;
       }
-  
+
       img {
         width: 200px;
       }

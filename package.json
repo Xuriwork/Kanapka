@@ -18,7 +18,9 @@
     "react-hook-form": "^5.6.1",
     "react-phone-number-input": "^3.0.22",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "secure-ls": "^1.2.6",
+    "secure-web-storage": "^1.0.2"
   },
   "scripts": {
     "start": "cross-env BROWSER=none react-scripts start",

@@ -52,6 +52,8 @@ export const Modal = React.memo((props) => {
          return setBagOpen(true);
       };
       setOrders([...orders, order]);
+      const serializedItems = JSON.stringify([...orders, order]);
+      sessionStorage.setItem('bagItems', serializedItems);
       closeModalHandler();
       setBagOpen(true);
    };

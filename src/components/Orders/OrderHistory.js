@@ -25,9 +25,8 @@ export const OrderHistory = ({ orderHistory }) => {
                   <div key={name}>
                     <div>
                       <span>Name: {name}</span>
-                      <span> x{quantity}</span>
                     </div>
-                    <span>Price: {formatPrice(price)}</span>
+                    <span>Price: {formatPrice(price)}<span> x{quantity}</span></span>
                   </div>
                 ))}
               </div>

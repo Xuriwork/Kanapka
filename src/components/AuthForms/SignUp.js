@@ -1,15 +1,15 @@
 /* eslint-disable no-useless-escape */
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import PhoneInput from 'react-phone-number-input';
 
-const SignUp = ({ handleSignUp, errors }) => {
-  const [phoneNumber, setPhoneNumber] = useState(null);
-  const { register, handleSubmit, errors: formErrors } = useForm();
+const SignUp = ({ handleSignUp, errors, loading }) => {
+  const { register, handleSubmit, errors: formErrors, watch } = useForm();
+  const password = useRef({});
+  password.current = watch('password', '');
 
   const signUp = (data) => {
-    handleSignUp(data.email, data.password, data.name, phoneNumber);
+    handleSignUp(data);
   };
 
   return (
@@ -26,11 +26,11 @@ const SignUp = ({ handleSignUp, errors }) => {
             <input
               type='text'
               name='firstName'
-              placeholder='First'
               className='field-divided'
+              placeholder='First'
               ref={register({
                 required: {
-                  value: true,
+                  value: false,
                   message: 'This field is required',
                 },
                 pattern: {
@@ -42,11 +42,11 @@ const SignUp = ({ handleSignUp, errors }) => {
             <input
               type='text'
               name='lastName'
-              placeholder='Last'
               className='field-divided'
+              placeholder='Last'
               ref={register({
                 required: {
-                  value: true,
+                  value: false,
                   message: 'This field is required',
                 },
                 pattern: {
@@ -56,19 +56,29 @@ const SignUp = ({ handleSignUp, errors }) => {
               })}
             />
           </span>
-          {formErrors.name && (
-            <span className='span-error-message'>
-              {formErrors.name.message}
-            </span>
-          )}
+          <div className='form-name-error-container'>
+            <div className='form-name-error'>
+              {formErrors.firstName && (
+                <span className='span-error-message firstName'>
+                  {formErrors.firstName.message}
+                </span>
+              )}
+            </div>
+            <div className='form-name-error'>
+              {formErrors.lastName && (
+                <span className='span-error-message'>
+                  {formErrors.lastName.message}
+                </span>
+              )}
+            </div>
+          </div>
           <label>Email Address</label>
           <input
             type='email'
             name='email'
-            placeholder='Email'
             ref={register({
               required: {
-                value: true,
+                value: false,
                 message: 'This field is required',
               },
               pattern: {
@@ -86,10 +96,9 @@ const SignUp = ({ handleSignUp, errors }) => {
           <input
             type='password'
             name='password'
-            placeholder='Password'
             ref={register({
               required: {
-                value: true,
+                value: false,
                 message: 'This field is required',
               },
               minLength: {
@@ -107,12 +116,12 @@ const SignUp = ({ handleSignUp, errors }) => {
           <input
             type='password'
             name='confirmPassword'
-            placeholder='Confirm Password'
             ref={register({
               required: {
-                value: true,
+                value: false,
                 message: 'This field is required',
               },
+              validate: (value) => value === password.current || 'Passwords do not match',
               minLength: {
                 value: 4,
                 message: 'Must be at least 4 characters',
@@ -124,26 +133,9 @@ const SignUp = ({ handleSignUp, errors }) => {
               {formErrors.confirmPassword.message}
             </span>
           )}
-          <label>Phone Number</label>
-          <span>
-            <PhoneInput
-              international
-              defaultCountry='US'
-              name='phoneNumber'
-              value={phoneNumber}
-              onChange={(inputValue) => setPhoneNumber(inputValue)}
-            />
-          </span>
-          {formErrors.phoneNumber && (
-            <span className='span-error-message'>
-              {formErrors.phoneNumber.message}
-            </span>
-          )}
-          <span>
-            This is needed for security and questions about your delivery
-            orders.
-          </span>
-          <button className='sign-up-button'>Sign Up</button>
+          <button className='sign-up-button' disabled={loading}>
+            {loading ? <div className='sbl-circ-path'></div> : 'Sign Up'}
+          </button>
         </form>
       </div>
     </div>
