@@ -2,14 +2,16 @@ import React from 'react';
 import OrderSuccess from './OrderSuccess';
 
 import { useStateValue } from '../../state/state';
-import Loading from '../../utils/Loading';
+import Loading from '../Loading';
 
-export const OrderSuccessContainer = () => {
+export const OrderSuccessContainer = ({ history }) => {
     const [state] = useStateValue();
+
+    if (!state.orderPlaced) history.push('/menu');
 
     const orderPlacedInfo = state.orderPlacedInfo;
 
-    if (state.orderPlacedInfo === null) return <Loading />;
+    if (orderPlacedInfo === null) return <Loading />;
 
     return (
         <OrderSuccess {...orderPlacedInfo} />

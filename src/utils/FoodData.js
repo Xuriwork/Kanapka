@@ -15,6 +15,13 @@ const sauceImage = (imgName) => {
 
 export const foods = [
    {
+      img: foodImage('pepperoni-pizza.jpg'),
+      name: 'Pepperoni Pizza',
+      section: 'Food',
+      price: 6.00,
+      tags: ['pizza'],
+   },
+   {
       img: foodImage('crispy-chicken-sandwich.jpg'),
       name: 'Crispy Chicken Sandwich',
       section: 'Food',
@@ -142,6 +149,27 @@ export const foods = [
       section: 'Food',
       price: 1.29,
       tags: ['taco'],
+   },
+   {
+      img: foodImage('italian-sub.jpg'),
+      name: 'Italian Sub',
+      section: 'Food',
+      price: 2.00,
+      tags: ['sub'],
+   },
+   {
+      img: foodImage('meatball-sub.jpg'),
+      name: 'Meatball Sub',
+      section: 'Food',
+      price: 2.00,
+      tags: ['sub'],
+   },
+   {
+      img: foodImage('turkeysub.jpg'),
+      name: 'Turkey Sub',
+      section: 'Food',
+      price: 2.00,
+      tags: ['sub'],
    },
    {
       img: foodImage('milkshake-sundae-chocolate.png'),

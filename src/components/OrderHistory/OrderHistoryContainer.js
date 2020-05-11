@@ -1,32 +1,36 @@
 import React, { useState, useEffect } from 'react';
 
 import OrderHistory from './OrderHistory';
-import Loading from '../../utils/Loading';
+import Loading from '../Loading';
 
-import { usersCollection } from '../../utils/Firebase';
+import firebase, { usersCollection } from '../../utils/Firebase';
 import { useSession } from '../../hooks/useSession';
 
 const OrderHistoryContainer = () => {
   const { user } = useSession();
+  const userId = user.uid;
   const [orderHistory, setOrderHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userId = user.uid;
 
   useEffect(() => {
-    usersCollection
+    const unsubscribe = firebase
+      .firestore()
+      .collection('users')
       .doc(userId)
       .collection('orderHistory')
       .get()
       .then((snapshot) => {
+        const _orderHistory = [];
         snapshot.forEach((doc) => {
-          const _orderHistory = [];
           const order = doc.data();
           order.orderId = doc.id;
           _orderHistory.push(order);
-          setOrderHistory(_orderHistory);
-          setLoading(false);
         });
+        setOrderHistory(_orderHistory);
+        setLoading(false);
       });
+
+    return () => unsubscribe;
   }, [userId]);
 
   if (loading) {

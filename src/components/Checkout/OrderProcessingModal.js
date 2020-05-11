@@ -1,7 +1,6 @@
 import React from 'react';
 
 const OrderProcessingModal = () => {
-  document.body.style.overflow = 'hidden';
   
   return (
     <div className='modal'>

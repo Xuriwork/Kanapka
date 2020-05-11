@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-const SignIn = ({ handleSignIn, errors }) => {
+const SignIn = React.memo(({ handleSignIn, errors }) => {
    const { register, handleSubmit, watch } = useForm();
 
    const watchEmail = watch('email');
@@ -48,6 +48,6 @@ const SignIn = ({ handleSignIn, errors }) => {
          </div>
       </div>
    );
-};
+});
 
 export default SignIn;

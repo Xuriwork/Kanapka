@@ -5,12 +5,17 @@ export const useOrders = () => {
 
   useEffect(() => {
     if (sessionStorage.bagItems) {
-      const sessionStorageItems = JSON.parse(
-        sessionStorage.getItem('bagItems')
-      );
+      const sessionStorageItems = JSON.parse(sessionStorage.getItem('bagItems'));
       setOrders(sessionStorageItems);
     }
-  }, [setOrders]);
+  }, []);
+
+  useEffect(() => {
+    if (orders) {
+      const serializedItems = JSON.stringify(orders);
+      sessionStorage.setItem('bagItems', serializedItems);
+    }
+  }, [orders]);
 
   const getOrderPrice = (order) => {
     if (order.sauces && order.sauces.length > 2)
@@ -21,8 +26,6 @@ export const useOrders = () => {
   const removeItem = (itemName) => {
     setTimeout(() => {
       const newOrder = orders.filter((order) => !order.name.includes(itemName));
-      const serializedItems = JSON.stringify(newOrder);
-      sessionStorage.setItem('bagItems', serializedItems);
       return setOrders(newOrder);
     }, 700);
     const orderItem = document.getElementById(`order-item-li-${itemName}`);

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import firebase from '../../utils/Firebase';
 import SignIn from './SignIn';
 
-export const SignInContainer = ({ history }) => {
+export const SignInContainer = React.memo(({ history }) => {
     const [errors, setErrors] = useState(null);
 
     const handleSignIn = (data) => {
@@ -19,6 +19,6 @@ export const SignInContainer = ({ history }) => {
     return (
         <SignIn handleSignIn={handleSignIn} errors={errors} />
     )
-}
+});
 
 export default SignInContainer;

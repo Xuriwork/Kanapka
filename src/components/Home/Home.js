@@ -110,7 +110,7 @@ const Home = () => {
                            />
                            Add to Cart
                         </button>
-                        <p>$10.99</p>
+                        <p>$6.00</p>
                      </div>
                   </div>
                </div>
@@ -132,7 +132,7 @@ const Home = () => {
                            />
                            Add to Cart
                         </button>
-                        <p>$10.99</p>
+                        <p>$3.29</p>
                      </div>
                   </div>
                </div>
@@ -154,7 +154,7 @@ const Home = () => {
                            />
                            Add to Cart
                         </button>
-                        <p>$10.99</p>
+                        <p>$3.29</p>
                      </div>
                   </div>
                </div>
@@ -176,7 +176,7 @@ const Home = () => {
                            />
                            Add to Cart
                         </button>
-                        <p>$10.99</p>
+                        <p>$2.00</p>
                      </div>
                   </div>
                </div>
@@ -198,7 +198,7 @@ const Home = () => {
                            />
                            Add to Cart
                         </button>
-                        <p>$10.99</p>
+                        <p>$1.69</p>
                      </div>
                   </div>
                </div>
@@ -220,7 +220,7 @@ const Home = () => {
                            />
                            Add to Cart
                         </button>
-                        <p>$10.99</p>
+                        <p>$1.69</p>
                      </div>
                   </div>
                </div>

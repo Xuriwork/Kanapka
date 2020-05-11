@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-const SignUp = ({ handleSignUp, errors, loading }) => {
+const SignUp = React.memo(({ handleSignUp, errors, loading }) => {
   const { register, handleSubmit, errors: formErrors, watch } = useForm();
   const password = useRef({});
   password.current = watch('password', '');
@@ -30,7 +30,7 @@ const SignUp = ({ handleSignUp, errors, loading }) => {
               placeholder='First'
               ref={register({
                 required: {
-                  value: false,
+                  value: true,
                   message: 'This field is required',
                 },
                 pattern: {
@@ -46,7 +46,7 @@ const SignUp = ({ handleSignUp, errors, loading }) => {
               placeholder='Last'
               ref={register({
                 required: {
-                  value: false,
+                  value: true,
                   message: 'This field is required',
                 },
                 pattern: {
@@ -78,7 +78,7 @@ const SignUp = ({ handleSignUp, errors, loading }) => {
             name='email'
             ref={register({
               required: {
-                value: false,
+                value: true,
                 message: 'This field is required',
               },
               pattern: {
@@ -98,7 +98,7 @@ const SignUp = ({ handleSignUp, errors, loading }) => {
             name='password'
             ref={register({
               required: {
-                value: false,
+                value: true,
                 message: 'This field is required',
               },
               minLength: {
@@ -118,7 +118,7 @@ const SignUp = ({ handleSignUp, errors, loading }) => {
             name='confirmPassword'
             ref={register({
               required: {
-                value: false,
+                value: true,
                 message: 'This field is required',
               },
               validate: (value) => value === password.current || 'Passwords do not match',
@@ -140,6 +140,6 @@ const SignUp = ({ handleSignUp, errors, loading }) => {
       </div>
     </div>
   );
-};
+});
 
 export default SignUp;

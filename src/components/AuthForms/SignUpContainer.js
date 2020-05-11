@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SignUp from './SignUp';
 import firebase from '../../utils/Firebase';
 
-export const SignUpContainer = ({ history }) => {
+export const SignUpContainer = React.memo(({ history }) => {
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +31,6 @@ export const SignUpContainer = ({ history }) => {
       })
       .catch((error) => {
         setErrors(error.message);
-        console.log(error);
       });
     setLoading(false);
   };
@@ -39,6 +38,6 @@ export const SignUpContainer = ({ history }) => {
   return (
     <SignUp handleSignUp={handleSignUp} errors={errors} loading={loading} />
   );
-};
+});
 
 export default SignUpContainer;

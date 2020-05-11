@@ -10,7 +10,7 @@ import Bag from '../../assets/icons/navbar_icons/shopping-bag.svg';
 import firebase from './../../utils/Firebase';
 import { useSession } from '../../hooks/useSession';
 import { formatPrice } from './../../utils/foodData';
-import QuantityButtons from './../../utils/QuantityButtons';
+import QuantityButtons from '../QuantityButtons';
 import { FoodBagContext } from '../../context/BagContext';
 
 export const Navbar = ({
