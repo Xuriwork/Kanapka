@@ -27,10 +27,10 @@ exports.checkout = (req, res) => {
   const { full, monthYear } = generateDate();
 
   const userId = req.userId;
-  const { orderDate: date, orderItems, userInfo } = req.body;
+  const { date, orderItems, userInfo, total } = req.body;
 
   db.doc(`users/${userId}/orderHistory/${orderId}`)
-    .set({ date, order: orderItems })
+    .set({ date, order: orderItems, total })
     .then(() => {
       return res.status(200).send(orderId);
     })
@@ -41,12 +41,12 @@ exports.checkout = (req, res) => {
   db.collection('orders')
     .doc(monthYear)
     .collection(full)
-    .add({ date, userInfo, orderItems })
+    .add({ date, userInfo, orderItems, total })
     .catch((error) => {
       res.status(500).send({ error: error.message });
     });
 
-  res.status(201).send({ date, orderId, orderItems });
+  res.status(201).send({ date, orderId, orderItems, total });
 };
 
 exports.getUserOrderHistory = (req, res) => {

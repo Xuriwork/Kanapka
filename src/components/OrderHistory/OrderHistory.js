@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 
-import { formatPrice } from '../../utils/foodData';
+import { formatPrice } from '../../hooks/useOrders';
 
 export const OrderHistory = ({ orderHistory }) => {
 

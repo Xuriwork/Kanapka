@@ -1,10 +1,3 @@
-export const formatPrice = (price) => {
-   return price.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD'
-   });
-} ;
-
 const foodImage = (imgName) => {
    return require(`../assets/images/FoodItems/${imgName}`);
 };

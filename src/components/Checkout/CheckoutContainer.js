@@ -6,46 +6,49 @@ import Checkout from './Checkout';
 import { useSession } from '../../hooks/useSession';
 import { useStateValue } from '../../state/state';
 
-export const CheckoutContainer = ({ orders, getOrderPrice, subtotal, total, tax, setOrders, removeItem, deliveryCost, history }) => {
-  const [state, dispatch] = useStateValue();
+export const CheckoutContainer = ({
+  orders,
+  getOrderPrice,
+  subtotal,
+  total,
+  tax,
+  setOrders,
+  removeItem,
+  deliveryCost,
+  incrementOrderItem,
+  decrementOrderItem,
+  history,
+}) => {
+  
+  const [, dispatch] = useStateValue();
   const { user, headers } = useSession();
   const [isProcessing, setProcessing] = useState(false);
+  const [confirmationModal, setConfirmationModal] = useState(false);
   const userEmail = user.email;
   const userId = user.uid;
-
-  const incrementOrderItem = (index) => {
-    const newOrders = [...orders];
-    const targetedOrder = newOrders[index];
-    targetedOrder.quantity++;
-    setOrders(newOrders);
-  };
-
-  const decrementOrderItem = (index) => {
-    const newOrders = [...orders];
-    const targetedOrder = newOrders[index];
-    targetedOrder.quantity--;
-    setOrders(newOrders);
-  };
 
   const handleCheckout = (data) => {
     setProcessing(true);
     axios
       .post('/checkout', data, { headers: headers })
       .then((res) => {
-        setOrders([]);
-        const { date, orderId, orderItems } = res.data;
-        dispatch({ type: 'orderPlaced', payload: { date, orderId, orderItems }});
+        const { date, orderId, orderItems, total } = res.data;
+        dispatch({
+          type: 'orderPlaced',
+          payload: { date, orderId, orderItems, total },
+        });
       })
       .then(() => {
+        setOrders([]);
         setProcessing(false);
         history.push('/order-success');
       })
       .catch((error) => console.error('error', error));
   };
 
-    if (!orders || orders.length === 0) {
-        return <Redirect to={{pathname:'/menu'}} />
-    };
+  if (!orders || orders.length === 0) {
+    return <Redirect to={{ pathname: '/menu' }} />;
+  }
 
   return (
     <Checkout
@@ -61,6 +64,9 @@ export const CheckoutContainer = ({ orders, getOrderPrice, subtotal, total, tax,
       deliveryCost={deliveryCost}
       handleCheckout={handleCheckout}
       isProcessing={isProcessing}
+      confirmationModal={confirmationModal}
+      setConfirmationModal={setConfirmationModal}
+      history={history}
     />
   );
 };

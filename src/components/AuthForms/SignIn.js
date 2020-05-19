@@ -22,22 +22,18 @@ const SignIn = React.memo(({ handleSignIn, errors }) => {
                <label className='label'>Email Address</label>
                <input
                   type='email'
-                  name='email'
-                  ref={register({
-                     required: {
-                        value: true,
-                        message: 'This field is required',
-                     },
-                  })}
+                  name='email' 
+                  ref={register({ required: true })}
                />
                <label className='label'>Password</label>
                <input
                   type='password'
-                  name='password'
+                  name='password' 
                   ref={register({ required: true })}
                />
                <button
                   className='sign-up-button'
+                  style={!isDisabled ? { backgroundColor: '#9c9c9c' } : null}
                   disabled={!isDisabled}>
                   Sign In
                </button>

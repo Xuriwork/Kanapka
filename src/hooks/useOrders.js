@@ -23,6 +23,20 @@ export const useOrders = () => {
     return order.quantity * order.price;
   };
 
+  const incrementOrderItem = (index) => {
+    const newOrders = [...orders];
+    const targetedOrder = newOrders[index];
+    targetedOrder.quantity++;
+    setOrders(newOrders);
+  };
+
+  const decrementOrderItem = (index) => {
+    const newOrders = [...orders];
+    const targetedOrder = newOrders[index];
+    targetedOrder.quantity--;
+    setOrders(newOrders);
+  };
+
   const removeItem = (itemName) => {
     setTimeout(() => {
       const newOrder = orders.filter((order) => !order.name.includes(itemName));
@@ -38,7 +52,7 @@ export const useOrders = () => {
 
   const subtotal = orders.reduce(reducer, 0);
   const tax = subtotal * 0.07;
-  const deliveryCost = subtotal + tax >= 20 ? 0 : 2.0;
+  const deliveryCost = subtotal + tax >= 15 ? 0 : 2.0;
   const total = subtotal + tax + deliveryCost;
 
   return {
@@ -50,7 +64,16 @@ export const useOrders = () => {
     total,
     getOrderPrice,
     deliveryCost,
+    incrementOrderItem,
+    decrementOrderItem
   };
 };
+
+export const formatPrice = (price) => {
+  return price.toLocaleString('en-US', {
+     style: 'currency',
+     currency: 'USD'
+  });
+} ;
 
 export default useOrders;

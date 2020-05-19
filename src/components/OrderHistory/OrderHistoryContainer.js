@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import OrderHistory from './OrderHistory';
 import Loading from '../Loading';
 
-import firebase, { usersCollection } from '../../utils/Firebase';
+import { usersCollection } from '../../utils/Firebase';
 import { useSession } from '../../hooks/useSession';
 
 const OrderHistoryContainer = () => {
@@ -13,9 +13,7 @@ const OrderHistoryContainer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = firebase
-      .firestore()
-      .collection('users')
+    const unsubscribe = usersCollection
       .doc(userId)
       .collection('orderHistory')
       .get()
@@ -33,9 +31,17 @@ const OrderHistoryContainer = () => {
     return () => unsubscribe;
   }, [userId]);
 
-  if (loading) {
-    return <Loading />;
-  }
+  if (loading) return <Loading />;
+
+  const filteredHistory = orderHistory.sort((a, b) => {
+    return new Date(a.date) - new Date(a.date)
+  });
+  const filteredHistoryy = orderHistory.sort((a, b) => {
+    return new Date(a.date) - new Date(b.date);
+  });
+
+  console.log(filteredHistory);
+  console.log(filteredHistoryy);
 
   return <OrderHistory orderHistory={orderHistory} />;
 };

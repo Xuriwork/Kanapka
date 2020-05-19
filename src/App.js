@@ -30,7 +30,6 @@ axios.defaults.baseURL = 'https://us-central1-kanapka-xuri.cloudfunctions.net/ap
 const App = () => {
   const orders = useOrders();
   const { userIsLoading, user } = useAuth();
-  const auth = !!user;
 
   const value = React.useMemo(() => ({
     user
@@ -42,16 +41,16 @@ const App = () => {
     <UserContext.Provider value={value}>
       <StateProvider>
         <Router history={history}>
-          <Navbar {...orders} />
+          <Navbar {...orders} user={!!user} />
           <div className='app'>
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/menu' render={(props) => <Menu {...props} {...orders} />} />
-              <PublicRoute path='/sign-up' component={SignUpContainer} auth={auth} restricted={true} />
-              <PublicRoute path='/sign-in' component={SignInContainer} auth={auth} restricted={true} />
-              <PrivateRoute path='/checkout' component={(props) => <CheckoutContainer {...props} {...orders} />} auth={auth} />
-              <PrivateRoute path='/order-success' component={OrderSuccessContainer} auth={auth} />
-              <PrivateRoute path='/order-history' component={OrderHistoryContainer} auth={auth} />  
+              <PublicRoute path='/sign-up' component={SignUpContainer} auth={user} restricted={true} />
+              <PublicRoute path='/sign-in' component={SignInContainer} auth={user} restricted={true} />
+              <PrivateRoute path='/checkout' component={(props) => <CheckoutContainer {...props} {...orders} />} auth={user} />
+              <PrivateRoute path='/order-success' component={OrderSuccessContainer} auth={user} />
+              <PrivateRoute path='/order-history' component={OrderHistoryContainer} auth={user} />  
               <Route path='*' exact component={NotFound} />
             </Switch>
           </div>

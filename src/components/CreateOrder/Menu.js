@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { FoodBagContext } from '../../context/BagContext';
-import foods, { formatPrice } from './../../utils/foodData';
+import foods from '../../utils/foodData';
+import { formatPrice } from '../../hooks/useOrders';
 import { ReactComponent as StreakUnderline } from '../../assets/styled-underline.svg';
-import Modal from '../Modal';
-import { useTitle } from './../../hooks/useTitle';
+import Modal from '../Modals/ItemModal';
+import { useTitle } from '../../hooks/useTitle';
 import Skeleton from 'react-loading-skeleton';
 
 const Menu = ({ orders, setOrders }) => {
@@ -23,7 +24,7 @@ const Menu = ({ orders, setOrders }) => {
         <h1>Our Menu</h1>
         <StreakUnderline />
       </div>
-      <div className='menu-list-component'>
+      <div className='menu-component'>
         <section className='cards'>
           {foods.map((food) => (
             <div
