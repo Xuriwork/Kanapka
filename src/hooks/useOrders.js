@@ -18,8 +18,9 @@ export const useOrders = () => {
   }, [orders]);
 
   const getOrderPrice = (order) => {
-    if (order.sauces && order.sauces.length > 2)
+    if (order.sauces && order.sauces.length > 2) {
       return order.quantity * order.price + 0.3;
+    };
     return order.quantity * order.price;
   };
 

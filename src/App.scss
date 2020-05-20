@@ -685,13 +685,10 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: rgb(242, 149, 21);
-  background: linear-gradient(
-    90deg,
-    rgba(242, 149, 21, 1) 0%,
-    rgba(255, 183, 1, 1) 35%,
-    rgba(244, 180, 20, 1) 100%
-  );
+  background-image: url('./assets/images/HomeAssets/burgers.jpg') !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .kanapka-branding {
@@ -769,9 +766,9 @@ button {
 }
 
 .main-container-inner {
-  @extend %flex-center-column;
+  display: flex;
+  align-items: center;
   padding: 20px;
-  flex-direction: column-reverse;
   margin-bottom: 100px;
 
   > div {
@@ -788,10 +785,23 @@ button {
     margin-top: 20px;
   }
 
+  h2 {
+    background-color: var(--theme-color);
+    display: inline-block;
+    width: 150px;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 2px;
+  }
+
   p {
     margin-bottom: 30px;
 
     font-size: 1.1em;
+  }
+
+  a {
+    display: inline-block;
   }
 
   img {
@@ -823,34 +833,28 @@ button {
 }
 
 .cta-button {
-  padding: 15px 50px;
-  background-color: #ffcc66;
-  color: var(--red-theme-color);
-  border: none;
-  border-radius: 30px;
-  font-weight: bold;
-  transition-duration: 0.3s;
-  display: flex;
   width: 220px;
+  display: flex;
+  background-color: var(--theme-color);
+  color: var(--red-theme-color);
+  line-height: 50px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition-duration: 0.3s;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
 
   .gg-arrow-right {
     margin-left: 5px;
   }
 }
 
-.scroll-down-img {
-  transition-duration: 0.3s;
-}
-
-.cta-button:hover,
-.scroll-down-img:hover {
-  transform: scale(1.1);
-}
-
-.scroll-down {
-  display: flex;
-  justify-content: center;
-  margin: -10px 0;
+.cta-button:hover {
+  transform: scale(1.08);
 }
 
 .yellow-streak {
@@ -2162,6 +2166,7 @@ th {
     > div {
       display: block;
       text-align: left;
+      margin-left: 100px;
     }
 
     h1 {

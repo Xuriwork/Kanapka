@@ -7,11 +7,11 @@ const IMG = (imgName) => require(`../../assets/images/HomeAssets/${imgName}`);
 const Home = () => {
    return (
       <div className='main-site-container'>
-         <div className='main-container'>
+         <div style={{ backgroundImage: IMG('burgers.jpg') }} className='main-container'>
             <div className='main-container-inner'>
                <div>
                   <h2>Most Popular</h2>
-                  <h1>Ultimate Cheeseburger</h1>
+                  <h1>Ultimate Double Decker</h1>
                   <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br />
                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
                   <Link to='/menu'>
@@ -19,9 +19,6 @@ const Home = () => {
                         order now<i className='gg-arrow-right'></i>
                      </button>
                   </Link>
-               </div>
-               <div>
-                  <img src={IMG('Burger-Transparent-Images.png')} alt='Tasty burger' />
                </div>
             </div>
          </div>

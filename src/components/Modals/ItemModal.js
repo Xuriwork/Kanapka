@@ -30,12 +30,8 @@ export const Modal = (props) => {
     return food.tags.includes('includes-sauces');
   };
 
-  const filterSelectedSauces = allSauces.sauces.filter(
-    (sauce) => sauce.checked
-  );
-  const filterSelectedSaucesNames = filterSelectedSauces.map(
-    (sauce) => sauce.name
-  );
+  const filterSelectedSauces = allSauces.sauces.filter((sauce) => sauce.checked);
+  const filterSelectedSaucesNames = filterSelectedSauces.map((sauce) => sauce.name);
 
   const order = {
     name: isVisible.name,

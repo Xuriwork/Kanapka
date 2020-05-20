@@ -30,7 +30,7 @@ export const foods = [
    },
    {
       img: foodImage('ultimate-cheeseburger.jpg'),
-      name: 'Ultimate Cheeseburger',
+      name: 'Ultimate Double Decker',
       section: 'Food',
       price: 1.69,
       tags: ['burger', 'cheeseburger'],
