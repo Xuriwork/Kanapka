@@ -1,6 +1,6 @@
 import React from 'react';
-import KanapkaLogo from '../assets/icons/KanapkaIcon.svg';
-import LoadingSVG from '../assets/loading.svg';
+import KanapkaLogo from '../../assets/icons/KanapkaIcon.svg';
+import LoadingSVG from '../../assets/loading.svg';
 
 const Loading = () => {
    return (

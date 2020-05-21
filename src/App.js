@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar';
 import Home from './components/Home/Home';
 import Menu from './components/CreateOrder/Menu';
 import SignUpContainer from './components/AuthForms/SignUpContainer';
@@ -10,9 +10,11 @@ import SignInContainer from './components/AuthForms/SignInContainer';
 import CheckoutContainer from './components/Checkout/CheckoutContainer';
 import OrderHistoryContainer from './components/OrderHistory/OrderHistoryContainer';
 import OrderSuccessContainer from './components/Checkout/OrderSuccessContainer';
-import NotFound from './components/NotFound';
+import AboutUs from './components/AboutUs';
+import ContactUsContainer from 'components/ContactUs/ContactUsContainer';
+import NotFound from './components/Misc/NotFound';
 
-import Loading from './components/Loading';
+import Loading from './components/Misc/Loading';
 import history from 'utils/history';
 
 import useOrders from './hooks/useOrders';
@@ -46,6 +48,8 @@ const App = () => {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/menu' render={(props) => <Menu {...props} {...orders} />} />
+              <Route path='/about-us' component={AboutUs} />
+              <Route path='/contact-us' component={ContactUsContainer} />
               <PublicRoute path='/sign-up' component={SignUpContainer} auth={user} restricted={true} />
               <PublicRoute path='/sign-in' component={SignInContainer} auth={user} restricted={true} />
               <PrivateRoute path='/checkout' component={(props) => <CheckoutContainer {...props} {...orders} />} auth={user} />

@@ -3,7 +3,7 @@ import { FoodBagContext } from '../../context/BagContext';
 import { useQuantity, usePieces } from '../../hooks/useQuantity';
 import { useSauce } from '../../hooks/useSauce';
 import CustomizeOrder from '../CreateOrder/CustomizeOrder';
-import QuantityButtons from '../QuantityButtons';
+import QuantityButtons from '../Misc/QuantityButtons';
 
 export const Modal = (props) => {
   const { isVisible, orders, setOrders, formatPrice, setFoodModal } = props;

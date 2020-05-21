@@ -4,6 +4,7 @@
   text-decoration: none;
   list-style: none;
   font-family: Barlow, sans-serif;
+  resize: none;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Barlow:300,400|Pacifico|Lilita+One&display=swap');
@@ -73,6 +74,46 @@ button {
   span {
     color: #fff;
     font-size: 1.3em;
+  }
+}
+
+.yellow-button {
+  width: 100%;
+  background-color: var(--theme-color);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.3em;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: var(--theme-button-hover);
+  }
+
+  &:disabled {
+    .sbl-circ-path {
+      height: 19px;
+      width: 19px;
+      color: #fff;
+      position: relative;
+      display: inline-block;
+      border: 3px solid;
+      border-radius: 50%;
+      border-right-color: #e6b940;
+      animation: rotate 1s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
 }
 
@@ -370,6 +411,19 @@ button {
   z-index: 2;
   box-shadow: 0px 0px 4px 0px rgba(73, 73, 73, 0.623);
 }
+
+  .field-divided {
+    width: 49%;
+  }
+
+  .field-divided-thirds {
+    width: 32.5%;
+  }
+
+  .field-long,
+  .field-select {
+    width: 100%;
+  }
 
 .modal {
   @extend %flex-center-column;
@@ -757,6 +811,120 @@ button {
         background: var(--theme-button-hover);
       }
     }
+  }
+}
+
+.about-us-component {
+  @extend %flex-center-column;
+
+  .content-container {
+    width: 90%;
+    max-width: 730px;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+
+    h3 {
+      font-size: 1.75rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 100;
+      line-height: 1.8;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.contact-us-component {
+  @extend %flex-center-column;
+  margin-top: 40px;
+
+  .success-div {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #17b978;
+  }
+
+  form {
+    @extend %flex-center-column;
+    background-color: #fff;
+    width: 650px;
+    max-width: 90%;
+    min-height: 520px;
+    padding: 30px 40px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    box-sizing: border-box;
+
+    
+    .input-group {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      
+      span {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    h2 {
+      text-align: left;
+      width: 100%;
+      font-weight: 400;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      height: 70px;
+      margin-top: 20px;
+    }
+
+    input, select {
+      height: 40px;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position-x: 100%;
+      background-position-y: 50%;
+
+      &:focus {
+        background-image: url("data:image/svg+xml;utf8,<svg fill='rgb(255, 170, 0)' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+      }
+    }
+
+    label {
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    input, textarea, select {
+      outline: none;
+      border: none;
+      border-bottom: 2px solid #777;
+      box-shadow: none !important;
+      background-color: rgba(231, 231, 231, 0.616);
+      padding: 5px;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      outline: 0;
+
+      &:focus {
+        border-color: var(--theme-color);
+        border-width: medium medium 2px;
+      }
+    }
+
   }
 }
 
@@ -1316,12 +1484,13 @@ hr {
 }
 
 .socials {
-  min-width: 200px;
+  min-width: 160px;
   cursor: pointer;
 }
 
-.our-info-section {
+.footer {
   height: auto;
+  display: -ms-grid;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
@@ -1441,8 +1610,10 @@ th {
 
   .cards {
     width: 100%;
+    display: -ms-grid;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    grid-auto-rows: -ms-grid-rows;
     grid-auto-rows: auto;
     grid-gap: 20px;
     justify-items: center;
@@ -1570,46 +1741,6 @@ th {
       &:focus {
         border-color: var(--theme-color);
         border-width: medium medium 2px;
-      }
-    }
-  }
-
-  .sign-up-button {
-    width: 100%;
-    background-color: var(--theme-color);
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1.3em;
-    letter-spacing: 1.3px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    box-sizing: border-box;
-
-    &:hover {
-      background-color: var(--theme-button-hover);
-    }
-
-    &:disabled {
-      .sbl-circ-path {
-        height: 19px;
-        width: 19px;
-        color: #fff;
-        position: relative;
-        display: inline-block;
-        border: 3px solid;
-        border-radius: 50%;
-        border-right-color: #e6b940;
-        animation: rotate 1s linear infinite;
-      }
-
-      @keyframes rotate {
-        0% {
-          transform: rotate(0);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
       }
     }
   }
@@ -1903,19 +2034,6 @@ th {
         border: 1px solid #88d5e9;
       }
 
-      .field-divided {
-        width: 49%;
-      }
-
-      .field-divided-thirds {
-        width: 32.5%;
-      }
-
-      .field-long,
-      .field-select {
-        width: 100%;
-      }
-
       button {
         margin-top: 10px;
         border-radius: 5px;
@@ -1923,7 +2041,6 @@ th {
 
       .field-textarea {
         height: 60px;
-        resize: none;
       }
       .required {
         color: red;
@@ -2112,7 +2229,8 @@ th {
     }
   }
 
-  .floating-button, .mobile-shopping-bag-ul {
+  .floating-button,
+  .mobile-shopping-bag-ul {
     display: none;
   }
 
@@ -2131,7 +2249,7 @@ th {
           top: 60px;
         }
       }
-  
+
       @keyframes fadeOut {
         0% {
           opacity: 1;
@@ -2214,8 +2332,10 @@ th {
 
   .contact-section {
     height: auto;
+    display: -ms-grid;
     display: grid;
     grid-template-columns: 50% 50%;
+    grid-auto-rows: -ms-grid-rows;
     grid-auto-rows: auto;
   }
 
@@ -2317,22 +2437,18 @@ th {
     }
   }
 
-  .our-info-section {
-    height: auto;
+  .footer {
     display: flex;
     flex-direction: column;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    align-items: center;
     padding: 50px;
     text-align: center;
   }
 
-  .our-info-section h2 {
+  .footer h2 {
     margin: 30px 0;
   }
 
-  .our-info-section h2:after {
+  .footer h2:after {
     margin: auto;
     margin-top: 10px;
   }

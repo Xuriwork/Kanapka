@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/icons/KanapkaIcon.svg';
+import Footer from './Footer';
 
 const IMG = (imgName) => require(`../../assets/images/HomeAssets/${imgName}`);
 
@@ -352,60 +352,7 @@ const Home = () => {
             </div>
             <div></div>
          </section>
-         <section className='our-info-section'>
-            <div>
-               <div className='kanapka-branding'>
-                  <img src={Logo} alt='logo' />
-                  <h1>Kanapka</h1>
-               </div>
-               <p>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium, totam rem aperiam, eaque
-                  ipsa quae ab illo inventore veritatis et quasi architecto
-                  beatae vitae dicta sunt explicabo.
-               </p>
-               <img
-                  className='payments'
-                  src={IMG('payment-icons.svg')}
-                  alt='Forms of payment icons'
-               />
-            </div>
-            <div>
-               <h2>USEFUL LINKS</h2>
-               <table>
-                  <tbody>
-                     <tr>
-                        <td>About</td>
-                        <td>Wishlist</td>
-                     </tr>
-                     <tr>
-                        <td>Menu</td>
-                        <td>Privacy Policy</td>
-                     </tr>
-                     <tr>
-                        <td>Testimonials</td>
-                        <td>Order Tracking</td>
-                     </tr>
-                     <tr>
-                        <td>Contact Us</td>
-                        <td>Warranty and Services</td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
-            <div>
-               <h2>INSTAGRAM FEED</h2>
-               <div className='instagram-feed'>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-               </div>
-            </div>
-         </section>
-         <span className='copyright'>© 2019, Kanapka. All rights reserved</span>
+         <Footer />
       </div>
    );
 };

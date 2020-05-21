@@ -5,14 +5,14 @@ import { withRouter } from 'react-router';
 import Hamburger from 'hamburger-react';
 import Menu from 'react-burger-menu/lib/menus/push';
 
-import Logo from '../../assets/icons/KanapkaIcon.svg';
-import Bag from '../../assets/icons/navbar_icons/shopping-bag.svg';
+import Logo from '../assets/icons/KanapkaIcon.svg';
+import Bag from '../assets/icons/navbar_icons/shopping-bag.svg';
 
-import firebase from './../../utils/Firebase';
-import { formatPrice } from '../../hooks/useOrders';
-import QuantityButtons from '../QuantityButtons';
-import { FoodBagContext } from '../../context/BagContext';
-import RemoveItemModal from '../Modals/RemoveItemModal';
+import firebase from '../utils/Firebase';
+import { formatPrice } from '../hooks/useOrders';
+import QuantityButtons from './Misc/QuantityButtons';
+import { FoodBagContext } from '../context/BagContext';
+import RemoveItemModal from './Modals/RemoveItemModal';
 
 export const Navbar = ({
   user,
@@ -65,11 +65,11 @@ export const Navbar = ({
         </Link>
         <span className='desktop'>
           <ul className='navbar-links'>
-            <li><Link to='/about'>About</Link></li>
+            <li><Link to='/about-us'>About</Link></li>
             <li><Link to='/menu'>Menu</Link></li>
             <li><Link to='/gallery'>Gallery</Link></li>
             <li><Link to='/blog'>Blog</Link></li>
-            <li><Link to='/contact'>Contact</Link></li>
+            <li><Link to='/contact-us'>Contact</Link></li>
             {user && <li><Link to='/order-history'>Order History</Link></li>}
           </ul>
           <span className='action-links'>
@@ -158,10 +158,10 @@ export const Navbar = ({
           )}
           <li><Link to='/menu'>Create an Order</Link></li>
           <li>{user && <Link to='/order-history'>Order History</Link>}</li>
-          <li><Link to='/about'>About</Link></li>
+          <li><Link to='/about-us'>About</Link></li>
           <li><Link to='/gallery'>Gallery</Link></li>
           <li><Link to='/blog'>Blog</Link></li>
-          <li><Link to='/contact'>Contact</Link></li>
+          <li><Link to='/contact-us'>Contact</Link></li>
         </ul>
       </Menu>
     </>

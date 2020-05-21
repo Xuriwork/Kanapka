@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SignUp from './SignUp';
-import firebase from '../../utils/Firebase';
+import firebase, { usersCollection } from '../../utils/Firebase';
 
 export const SignUpContainer = React.memo(({ history }) => {
   const [errors, setErrors] = useState(null);
@@ -20,7 +20,7 @@ export const SignUpContainer = React.memo(({ history }) => {
       })
       .then((user) => {
         const userId = user.uid;
-        firebase.firestore().collection('users').doc(userId).set({
+        usersCollection.doc(userId).set({
           firstName,
           lastName,
           email: user.email,

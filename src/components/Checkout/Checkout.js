@@ -5,7 +5,7 @@ import PhoneInput, { getCountries } from 'react-phone-number-input';
 import en from 'react-phone-number-input/locale/en.json';
 
 import { formatPrice } from '../../hooks/useOrders';
-import QuantityButtons from '../QuantityButtons';
+import QuantityButtons from '../Misc/QuantityButtons';
 import OrderProccessingModal from './OrderProcessingModal';
 import RemoveItemModal from '../Modals/RemoveItemModal';
 import Modal from '../Modals/Modal';

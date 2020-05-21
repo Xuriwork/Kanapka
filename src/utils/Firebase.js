@@ -17,5 +17,6 @@ firebase.initializeApp(firebaseConfig);
 
 export const usersCollection = firebase.firestore().collection('users');
 export const ordersCollection = firebase.firestore().collection('orders');
+export const feedbackCollection = firebase.firestore().collection('feedback');
 
 export default firebase;

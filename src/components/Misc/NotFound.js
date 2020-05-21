@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Pizza from '../assets/images/pizza-svgrepo.svg';
+import Pizza from '../../assets/images/pizza-svgrepo.svg';
 
 const NotFound = () => {
   return (
@@ -11,7 +11,7 @@ const NotFound = () => {
           4<img src={Pizza} alt='Pizza' />4
         </h1>
         <p>
-          Pheeew, we messed up there... we almost exposed our secret sauce{' '}
+          Pheeew, we messed up there... and nearly exposed our secret sauce{' '}
           <span role='img' aria-label='Winking Face Emoji'>
             😉
           </span>

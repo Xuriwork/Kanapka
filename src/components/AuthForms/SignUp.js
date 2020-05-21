@@ -133,7 +133,7 @@ const SignUp = React.memo(({ handleSignUp, errors, loading }) => {
               {formErrors.confirmPassword.message}
             </span>
           )}
-          <button className='sign-up-button' disabled={loading}>
+          <button className='yellow-button' disabled={loading}>
             {loading ? <div className='sbl-circ-path'></div> : 'Sign Up'}
           </button>
         </form>

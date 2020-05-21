@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReactComponent as Decrement } from '../assets/decrement.svg';
-import { ReactComponent as Increment } from '../assets/increment.svg';
+import { ReactComponent as Decrement } from '../../assets/decrement.svg';
+import { ReactComponent as Increment } from '../../assets/increment.svg';
 
 const QuantityButtons = ({ quantity, index, incrementOrderItem, decrementOrderItem }) => {
    return (

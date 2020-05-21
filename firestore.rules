@@ -14,5 +14,8 @@ service cloud.firestore {
       allow read;
       allow write: if belongsTo(userId);
     }
+    match /feedback/{feedbackId} {
+      allow write;
+    }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import OrderSuccess from './OrderSuccess';
 
 import { useStateValue } from '../../state/state';
-import Loading from '../Loading';
+import Loading from '../Misc/Loading';
 
 export const OrderSuccessContainer = ({ history }) => {
     const [state] = useStateValue();

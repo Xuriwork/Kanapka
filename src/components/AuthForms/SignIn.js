@@ -32,7 +32,7 @@ const SignIn = React.memo(({ handleSignIn, errors }) => {
                   ref={register({ required: true })}
                />
                <button
-                  className='sign-up-button'
+                  className='yellow-button'
                   style={!isDisabled ? { backgroundColor: '#9c9c9c' } : null}
                   disabled={!isDisabled}>
                   Sign In

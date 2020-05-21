@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
+
+import Skeleton from 'react-loading-skeleton';
+
 import { FoodBagContext } from '../../context/BagContext';
 import foods from '../../utils/foodData';
 import { formatPrice } from '../../hooks/useOrders';
-import { ReactComponent as StreakUnderline } from '../../assets/styled-underline.svg';
 import Modal from '../Modals/ItemModal';
 import { useTitle } from '../../hooks/useTitle';
-import Skeleton from 'react-loading-skeleton';
+
+import { ReactComponent as StreakUnderline } from '../../assets/styled-underline.svg';
 
 const Menu = ({ orders, setOrders }) => {
   document.title = 'Kanapka - Menu';

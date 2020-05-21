@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import OrderHistory from './OrderHistory';
-import Loading from '../Loading';
+import Loading from '../Misc/Loading';
 
 import { usersCollection } from '../../utils/Firebase';
 import { useSession } from '../../hooks/useSession';
