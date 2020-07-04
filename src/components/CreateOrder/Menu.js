@@ -37,11 +37,11 @@ const Menu = ({ orders, setOrders }) => {
               {
                  <>
                <div
-                className='card--img'
+                className='card-img'
                 style={{ backgroundImage: `url(${food.img})` }}></div>
-               <div className='card--info'>
-                <span className='card--category'>{food.section}</span>
-                <h3 className='card--title'>{food.name}</h3>
+               <div className='card-info'>
+                <span className='card-category'>{food.section}</span>
+                <h3 className='card-title'>{food.name}</h3>
               </div>
               </> || <Skeleton />}
             </div>

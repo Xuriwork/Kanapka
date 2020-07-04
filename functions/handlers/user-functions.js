@@ -22,7 +22,7 @@ exports.signUp = (req, res) => {
 
   if (!valid) return res.status(404).send(errors);
 
-  firebase
+  return firebase
     .auth()
     .createUserWithEmailAndPassword(newUser.email, newUser.password)
     .then((data) => {
@@ -56,7 +56,7 @@ exports.signIn = async (req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  await firebase
+  return await firebase
     .auth()
     .signInWithEmailAndPassword(user.email, user.password)
     .then((data) => {
