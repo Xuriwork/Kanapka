@@ -26,9 +26,6 @@ import 'App.scss';
 
 axios.defaults.baseURL = 'https://us-central1-kanapka-xuri.cloudfunctions.net/api'
 
-//http://localhost:5001/kanapka-xuri/us-central1/api/
-//https://us-central1-kanapka-xuri.cloudfunctions.net/api
-
 const App = () => {
   const orders = useOrders();
   const { userIsLoading, user } = useAuth();
